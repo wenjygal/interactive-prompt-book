@@ -1,0 +1,70 @@
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-predicted-text);
+  text-decoration: underline;
+  margin-bottom: var(--space-4);
+}
+
+.hero {
+  margin-bottom: var(--space-5);
+}
+
+.title {
+  font-size: var(--fs-h1);
+  margin-bottom: var(--space-2);
+}
+
+.subtitle {
+  color: var(--color-text-secondary);
+  max-width: 60ch;
+}
+
+.section {
+  margin-bottom: var(--space-5);
+}
+
+.sectionTitle {
+  font-size: var(--fs-h3);
+  margin-bottom: var(--space-2);
+}
+
+.text {
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  max-width: 65ch;
+}
+
+.list {
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  padding-inline-start: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contactBox {
+  background: var(--color-card-bg);
+  border: 1.5px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  margin-top: 6px;
+}
+
+.contactBox a {
+  color: var(--color-predicted-text);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.docMeta {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-divider);
+}

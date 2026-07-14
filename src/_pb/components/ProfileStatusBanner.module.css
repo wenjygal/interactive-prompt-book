@@ -1,0 +1,72 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding: 15px 20px;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #ffffff 0%, #fff3f1 100%);
+  border: 1px solid #ffd9d3;
+  margin-bottom: var(--space-5);
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 999px;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badgeEmpty {
+  background-color: var(--color-empty-bg);
+  color: var(--color-empty-text);
+}
+
+.badgePartial {
+  background-color: var(--color-predicted-bg);
+  color: var(--color-predicted-text);
+}
+
+.badgeFull {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.message {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-body);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  background-color: var(--color-action);
+  color: var(--color-on-action);
+  font-weight: 700;
+  font-size: var(--fs-label);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.cta:hover {
+  background-color: var(--color-action-hover);
+}
+
+.cta:active {
+  transform: scale(0.97);
+}
