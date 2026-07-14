@@ -102,7 +102,7 @@ export default function Profile() {
     <section>
       <h1 className={styles.title}>פרופיל העסק שלך</h1>
       <p className={styles.subtitle}>
-        ממלאים פעם אחת — וכל פרומפט מכאן והלאה משתמש בפרטים האלה אוטומטית. ככל שתמלאו יותר, כך הפרומפטים יהיו מדויקים
+        למלא פעם אחת — וכל פרומפט מכאן והלאה משתמש בפרטים האלה אוטומטית. ככל שממלאים יותר, כך הפרומפטים יהיו מדויקים
         יותר.
       </p>
 
@@ -121,10 +121,10 @@ export default function Profile() {
       </div>
 
       <div className={styles.intakeCard}>
-        <h2 className={styles.intakeHeading}>הדביקו תיאור עסק, או ייבאו קובץ</h2>
+        <h2 className={styles.intakeHeading}>להדביק תיאור עסק, או לייבא קובץ</h2>
         <textarea
           className={styles.textarea}
-          placeholder="הדביקו כאן תיאור חופשי של העסק שלכם — נזהה ממנו אוטומטית שדות כמו שם החברה, קהל היעד, הכאב המרכזי ועוד."
+          placeholder="להדביק כאן תיאור חופשי של העסק שלך — נזהה ממנו אוטומטית שדות כמו שם החברה, קהל היעד, הכאב המרכזי ועוד."
           value={intakeText}
           onChange={(e) => setIntakeText(e.target.value)}
         />
@@ -151,7 +151,7 @@ export default function Profile() {
           {isFileLoading ? (
             <Spinner label="קורא את הקובץ..." />
           ) : (
-            <span>גררו לכאן קובץ .md או .csv, או לחצו לבחירה</span>
+            <span>לגרור לכאן קובץ .md או .csv, או ללחוץ לבחירה</span>
           )}
           {fileName && !isFileLoading && <span className={styles.fileName}>{fileName}</span>}
           <input
@@ -178,7 +178,7 @@ export default function Profile() {
       <div className={styles.group}>
         <div className={styles.groupHead}>
           <h2>פרטי העסק</h2>
-          <p>כל שדה שתמלאו כאן ימשך אוטומטית לתוך הפרומפטים הרלוונטיים בספר.</p>
+          <p>כל שדה שממלאים כאן ימשך אוטומטית לתוך הפרומפטים הרלוונטיים בספר.</p>
         </div>
         <div className={styles.fieldsGrid}>
           {PROFILE_FIELDS.map((field) => (

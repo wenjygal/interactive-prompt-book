@@ -113,7 +113,7 @@ export default function PromptEditor() {
       show("הועתק בהצלחה ✓");
       trackEvent("prompt_copy", { promptId: prompt.id, category: prompt.category });
     } catch {
-      show("ההעתקה נכשלה — נסו שוב");
+      show("ההעתקה נכשלה — לנסות שוב");
     }
   }
 

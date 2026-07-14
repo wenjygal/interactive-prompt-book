@@ -45,7 +45,7 @@ export default function Settings() {
     <section>
       <h1 className={styles.title}>הגדרות</h1>
       <p className={styles.subtitle}>
-        האפליקציה שומרת הכל על המכשיר שלכם — אין חשבון, אין סיסמה. כאן אפשר לנהל ברירות מחדל, לגבות נתונים, ולמחוק
+        האפליקציה שומרת הכל על המכשיר שלך — אין חשבון, אין סיסמה. כאן אפשר לנהל ברירות מחדל, לגבות נתונים, ולמחוק
         אותם אם צריך.
       </p>
 
@@ -61,7 +61,7 @@ export default function Settings() {
           <h2>שמירת קבצים</h2>
           <p>
             כפתורי "שמור כקובץ" באפליקציה מורידים את הקובץ לתיקיית ההורדות הרגילה של הדפדפן. כדי שקבצים יישמרו ישירות
-            לתיקיית ה-Drive שלכם, אפשר להגדיר בדפדפן שתיקיית ההורדות שלו תהיה תיקיית ה-Drive (בהגדרות הדפדפן →
+            לתיקיית ה-Drive שלך, אפשר להגדיר בדפדפן שתיקיית ההורדות שלו תהיה תיקיית ה-Drive (בהגדרות הדפדפן →
             הורדות).
           </p>
         </div>
@@ -117,10 +117,10 @@ export default function Settings() {
       <div className={styles.group}>
         <div className={styles.groupHead}>
           <h2>נתונים ופרטיות</h2>
-          <p>הנתונים שלכם שייכים לכם.</p>
+          <p>הנתונים שלך שייכים לך.</p>
         </div>
         <button type="button" className={styles.secondaryBtn} onClick={handleExport}>
-          הורידו עותק מהנתונים שלכם
+          להוריד עותק מהנתונים שלך
         </button>
         <div className={styles.linkRow}>
           <Link to="/accessibility" className={styles.textLink}>
@@ -142,15 +142,15 @@ export default function Settings() {
         </div>
         {deleteStep === "idle" && (
           <button type="button" className={styles.dangerOutline} onClick={() => setDeleteStep("confirm")}>
-            מחקו את כל הנתונים שלי
+            למחוק את כל הנתונים שלי
           </button>
         )}
         {deleteStep === "confirm" && (
           <div>
-            <p className={styles.confirmText}>בטוחים לגמרי? הפעולה הזו סופית ולא ניתנת לביטול.</p>
+            <p className={styles.confirmText}>למחוק לצמיתות? הפעולה הזו סופית ולא ניתנת לביטול.</p>
             <div className={styles.confirmActions}>
               <button type="button" className={styles.dangerFilled} onClick={handleConfirmDelete}>
-                כן, מחקו לצמיתות
+                כן, למחוק לצמיתות
               </button>
               <button type="button" className={styles.ghostBtn} onClick={() => setDeleteStep("idle")}>
                 ביטול

@@ -24,7 +24,7 @@ export default function Analyze() {
   return (
     <section>
       <h1 className={styles.title}>ניתוח תיאור עסק וייבוא פרומפטים</h1>
-      <p className={styles.subtitle}>נתחו תיאור עסק חדש כדי לעדכן את הפרופיל, או ייבאו פרומפט חיצוני וסווגו אותו אוטומטית לספר.</p>
+      <p className={styles.subtitle}>לנתח תיאור עסק חדש כדי לעדכן את הפרופיל, או לייבא פרומפט חיצוני שיסווג אוטומטית לספר.</p>
 
       <div className={styles.modeTabs} role="tablist">
         <button
@@ -72,7 +72,7 @@ function DescriptionMode() {
     };
     reader.onerror = () => {
       setIsFileLoading(false);
-      show("קריאת הקובץ נכשלה — נסו קובץ אחר");
+      show("קריאת הקובץ נכשלה — לנסות קובץ אחר");
     };
     reader.readAsText(file);
   }
@@ -101,7 +101,7 @@ function DescriptionMode() {
       <div className={styles.card}>
         <textarea
           className={styles.textarea}
-          placeholder="הדביקו כאן תיאור עסק חופשי..."
+          placeholder="להדביק כאן תיאור עסק חופשי..."
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
@@ -116,7 +116,7 @@ function DescriptionMode() {
           role="button"
           tabIndex={0}
         >
-          {isFileLoading ? <Spinner label="קורא את הקובץ..." /> : <span>גררו לכאן קובץ .md או .csv, או לחצו לבחירה</span>}
+          {isFileLoading ? <Spinner label="קורא את הקובץ..." /> : <span>לגרור לכאן קובץ .md או .csv, או ללחוץ לבחירה</span>}
           <input
             ref={fileInputRef}
             type="file"
@@ -196,7 +196,7 @@ function ImportMode() {
     };
     reader.onerror = () => {
       setIsFileLoading(false);
-      show("קריאת הקובץ נכשלה — נסו קובץ אחר");
+      show("קריאת הקובץ נכשלה — לנסות קובץ אחר");
     };
     reader.readAsText(file);
   }
@@ -227,7 +227,7 @@ function ImportMode() {
       <div className={styles.card}>
         <textarea
           className={styles.textarea}
-          placeholder="הדביקו כאן פרומפט חיצוני..."
+          placeholder="להדביק כאן פרומפט חיצוני..."
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
@@ -242,7 +242,7 @@ function ImportMode() {
           role="button"
           tabIndex={0}
         >
-          {isFileLoading ? <Spinner label="קורא את הקובץ..." /> : <span>גררו לכאן קובץ טקסט, או לחצו לבחירה</span>}
+          {isFileLoading ? <Spinner label="קורא את הקובץ..." /> : <span>לגרור לכאן קובץ טקסט, או ללחוץ לבחירה</span>}
           <input
             ref={fileInputRef}
             type="file"

@@ -43,14 +43,14 @@ export default function Home() {
       <div className={styles.intro}>
         <h1 className={styles.title}>ספר הפרומפטים שלך</h1>
         <p className={styles.subtitle}>
-          לא צריך להבין בפרומפטים כדי להתחיל. בוחרים נושא, ממלאים כמה פרטים, ומקבלים פרומפט שכתוב בול בשבילכם.
+          לא צריך להבין בפרומפטים כדי להתחיל. בוחרים נושא, ממלאים כמה פרטים, ומקבלים פרומפט שכתוב בול בשבילך.
         </p>
       </div>
 
       <ProfileStatusBanner status={profileStatus} />
 
       <div className={styles.sectionHeading}>
-        <h2>מה יש בספר הפרומפטים שלכם</h2>
+        <h2>מה יש בספר הפרומפטים שלך</h2>
         <span>
           {CATEGORIES.length} נושאים, {allPrompts.length} פרומפטים מוכנים
         </span>

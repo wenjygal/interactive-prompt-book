@@ -11,7 +11,7 @@ export default function AccessibilityStatement() {
       <div className={styles.hero}>
         <h1 className={styles.title}>הצהרת נגישות</h1>
         <p className={styles.subtitle}>
-          אנחנו מאמינים שכל בעל/ת עסק צריכ/ה להיות מסוגל/ת להשתמש באפליקציה הזו — בלי קשר ליכולת הראייה, השמיעה,
+          אנחנו מאמינים שכל מי שמנהל עסק צריך להיות מסוגל להשתמש באפליקציה הזו — בלי קשר ליכולת הראייה, השמיעה,
           התנועה או הקוגניציה. הדף הזה מתאר את מאמצי הנגישות שלנו.
         </p>
       </div>
@@ -47,7 +47,7 @@ export default function AccessibilityStatement() {
       </div>
 
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>נתקלתם במכשול?</h2>
+        <h2 className={styles.sectionTitle}>נתקלת במכשול?</h2>
         <div className={styles.contactBox}>
           <p className={styles.text}>
             נשמח לשמוע ולתקן. אפשר לפנות אלינו בכתובת{" "}

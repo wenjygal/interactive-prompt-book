@@ -102,7 +102,7 @@ export default function Library() {
       await navigator.clipboard.writeText(entry.filledTemplate);
       show("הועתק בהצלחה ✓");
     } catch {
-      show("ההעתקה נכשלה — נסו שוב");
+      show("ההעתקה נכשלה — לנסות שוב");
     }
   }
 
@@ -125,7 +125,7 @@ export default function Library() {
       <div className={styles.headerRow}>
         <div>
           <h1 className={styles.title}>פרומטים שמורים</h1>
-          <p className={styles.subtitle}>כל הפרומפטים שמילאתם ושמרתם, במקום אחד.</p>
+          <p className={styles.subtitle}>כל הפרומפטים שמילאת ושמרת, במקום אחד.</p>
         </div>
         {savedPrompts.length > 0 && (
           <button type="button" className={styles.backupButton} onClick={handleBackupAll}>
@@ -135,7 +135,7 @@ export default function Library() {
       </div>
 
       {savedPrompts.length === 0 ? (
-        <p className={styles.empty}>עדיין לא שמרתם פרומפטים. פתחו פרומפט, מלאו אותו, ולחצו "שמור לפרומפטים שמורים".</p>
+        <p className={styles.empty}>עדיין לא שמרת פרומפטים. לפתוח פרומפט, למלא אותו, וללחוץ על "שמור לפרומפטים שמורים".</p>
       ) : (
         <>
           <div className={styles.controls}>

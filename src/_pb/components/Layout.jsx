@@ -105,7 +105,7 @@ export default function Layout() {
               <span className={styles.ringPct}>{percent}%</span>
             </div>
             <div>
-              <div className={styles.profileWidgetTitle}>ההתקדמות שלכם בפרופיל</div>
+              <div className={styles.profileWidgetTitle}>ההתקדמות שלך בפרופיל</div>
               <div className={styles.profileWidgetText}>פרופיל מוכן {percent < 100 ? "חלקית" : "במלואו"}.</div>
             </div>
           </Link>
