@@ -1,43 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "HELOW WORLD - עמוד נחיתה" },
-      { name: "description", content: "עמוד נחיתה מינימליסטי ומודרני" },
-      { property: "og:title", content: "HELOW WORLD" },
-      { property: "og:description", content: "עמוד נחיתה מינימליסטי ומודרני" },
+      { title: "ספר פרומפטים חכם" },
+      { name: "description", content: "ספר פרומפטים חכם לעסקים - יצירה, ניהול ושיתוף פרומפטים מותאמים אישית" },
+      { property: "og:title", content: "ספר פרומפטים חכם" },
+      { property: "og:description", content: "ספר פרומפטים חכם לעסקים" },
     ],
   }),
   component: Index,
+  ssr: false,
 });
 
 function Index() {
-  return (
-    <div
-      dir="rtl"
-      className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center"
-    >
-      <div className="relative">
-        <div className="absolute -inset-20 rounded-full bg-primary/5 blur-3xl" />
-        <div className="relative">
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground">
-            ברוכים הבאים
-          </p>
-          <h1 className="mt-4 text-6xl font-bold tracking-tight text-foreground sm:text-8xl md:text-9xl">
-            HELOW WORLD
-          </h1>
-        </div>
-      </div>
-      <p className="mt-8 max-w-lg text-lg text-muted-foreground">
-        זהו עמוד נחיתה פשוט, נקי ומודרני בעברית.
-      </p>
-      <a
-        href="mailto:hello@example.com"
-        className="mt-10 inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-105 hover:bg-primary/90"
-      >
-        צרו קשר
-      </a>
-    </div>
-  );
+  const [mounted, setMounted] = useState(false);
+  const [Content, setContent] = useState<React.ReactNode>(null);
+
+  useEffect(() => {
+    (async () => {
+      const [{ HashRouter }, { default: App }] = await Promise.all([
+        import("react-router-dom"),
+        import("../_pb/App.jsx"),
+      ]);
+      await import("../_pb/index.css");
+      setContent(
+        <HashRouter>
+          <App />
+        </HashRouter>
+      );
+      setMounted(true);
+    })();
+  }, []);
+
+  if (!mounted) {
+    return <div style={{ minHeight: "100vh" }} />;
+  }
+  return <>{Content}</>;
 }
