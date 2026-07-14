@@ -20,10 +20,12 @@ function Index() {
 
   useEffect(() => {
     (async () => {
-      const [{ HashRouter }, { default: App }] = await Promise.all([
+      const [{ HashRouter }, appMod] = await Promise.all([
         import("react-router-dom"),
+        // @ts-expect-error - JSX module without types
         import("../_pb/App.jsx"),
       ]);
+      const App = appMod.default;
       await import("../_pb/index.css");
       setContent(
         <HashRouter>
