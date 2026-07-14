@@ -23,7 +23,7 @@
 .panel {
   position: absolute;
   bottom: calc(100% + 12px);
-  left: 0;
+  inset-inline-start: 0;
   width: 260px;
   background-color: var(--color-card-bg);
   color: var(--color-text-primary);
