@@ -1,24 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "HELOW WORLD - עמוד נחיתה" },
+      { name: "description", content: "עמוד נחיתה מינימליסטי ומודרני" },
+      { property: "og:title", content: "HELOW WORLD" },
+      { property: "og:description", content: "עמוד נחיתה מינימליסטי ומודרני" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
     <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+      dir="rtl"
+      className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center"
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+      <div className="relative">
+        <div className="absolute -inset-20 rounded-full bg-primary/5 blur-3xl" />
+        <div className="relative">
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground">
+            ברוכים הבאים
+          </p>
+          <h1 className="mt-4 text-6xl font-bold tracking-tight text-foreground sm:text-8xl md:text-9xl">
+            HELOW WORLD
+          </h1>
+        </div>
+      </div>
+      <p className="mt-8 max-w-lg text-lg text-muted-foreground">
+        זהו עמוד נחיתה פשוט, נקי ומודרני בעברית.
+      </p>
+      <a
+        href="mailto:hello@example.com"
+        className="mt-10 inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-105 hover:bg-primary/90"
+      >
+        צרו קשר
+      </a>
     </div>
   );
 }
