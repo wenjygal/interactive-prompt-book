@@ -1,0 +1,30 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.confirmed {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.suggested {
+  background-color: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+
+.predicted {
+  background-color: var(--color-predicted-bg);
+  color: var(--color-predicted-text);
+}
+
+.empty {
+  background-color: var(--color-empty-bg);
+  color: var(--color-empty-text);
+}

@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Assistant:wght@400;500;600;700;800&display=swap");
+
+:root {
+  /* צבעים — מיתוג Boost Me: מגנטה/כתום, על גבי אותה מערכת רכיבים/מרווחים/צללים שבנינו */
+  --color-bg-primary: #f5f5f7;
+  --color-bg-primary-soft: #f5f5f7;
+  --color-bg-secondary: #ffffff;
+  /* משטח "שקוע" לשדות קלט בתוך כרטיסים לבנים — נבדל בבירור מהכרטיס עצמו */
+  --color-surface-sunken: #f5f5f7;
+  --color-border: #e9e4e7;
+  --color-border-subtle: #e9e4e7;
+  --color-divider: #f1edef;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: rgba(26, 26, 26, 0.6);
+  --color-text-faint: rgba(26, 26, 26, 0.4);
+  --color-action: #e0128b;
+  --color-action-hover: #c10f79;
+  --color-action-active: #a50d67;
+  --color-on-action: #ffffff;
+  --color-success: #1f8a5b;
+  --color-success-bg: #eaf7f1;
+  --color-success-border: #b7e3cd;
+  --color-success-text: #1f8a5b;
+  --color-info: #0284c7;
+  --color-info-bg: #e0f2fe;
+  --color-info-border: #7dd3fc;
+  --color-info-text: #0369a1;
+  --color-predicted-bg: #fdf0f8;
+  --color-predicted-text: #a10e6e;
+  --color-empty-bg: #f1edef;
+  --color-empty-border: #ddd6da;
+  --color-empty-text: rgba(26, 26, 26, 0.6);
+  --color-card-bg: #ffffff;
+  --color-card-border: #e9e4e7;
+  --color-danger: #b3261e;
+  --color-danger-hover: #8c1d14;
+
+  /* סרגל צד — גרדיאנט המותג הרשמי של Boost Me */
+  --color-sidebar-bg: linear-gradient(135deg, #e0128b 0%, #f68920 100%);
+  --color-sidebar-text: #ffffff;
+  --color-sidebar-text-idle: rgba(255, 255, 255, 0.85);
+
+  /* קונטרולר מפולח (טאבים) */
+  --color-segmented-bg: #f1edef;
+
+  /* טיפוגרפיה */
+  --font-main: "Assistant", "Segoe UI", system-ui, sans-serif;
+  --font-heading: "Rubik", "Assistant", system-ui, sans-serif;
+  --fs-h1: clamp(26px, 3.2vw, 32px);
+  --fs-h2: 21px;
+  --fs-h3: 18px;
+  --fs-body: 16px;
+  --fs-label: 14px;
+  --line-height-base: 1.5;
+
+  /* מרווחים ורדיוסים */
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --radius-segmented: 14px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* צללים */
+  --shadow-card: 0 1px 2px rgba(42, 42, 61, 0.04);
+  --shadow-card-hover: 0 8px 20px rgba(42, 42, 61, 0.1);
+  --shadow-logo: 0 6px 16px rgba(0, 0, 0, 0.35);
+  --shadow-sidebar-widget: 0 8px 20px rgba(0, 0, 0, 0.18);
+
+  /* אנימציה */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 180ms;
+}
+
+/* גודל טקסט נגיש — מוגדל דרך סרגל הנגישות */
+html[data-a11y-font="large"] {
+  font-size: 112.5%;
+}
+html[data-a11y-font="larger"] {
+  font-size: 125%;
+}
+
+html[data-a11y-contrast="high"] {
+  --color-bg-primary: #ffffff;
+  --color-bg-primary-soft: #ffffff;
+  --color-bg-secondary: #ffffff;
+  --color-surface-sunken: #ffffff;
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-faint: #000000;
+  --color-action: #b45309;
+  --color-on-action: #ffffff;
+  --color-card-bg: #ffffff;
+  --color-card-border: #000000;
+  --color-border: #000000;
+  --color-border-subtle: #000000;
+  --color-divider: #000000;
+  --color-sidebar-bg: #000000;
+  --color-sidebar-text: #ffffff;
+  --color-sidebar-text-idle: #ffffff;
+  --color-segmented-bg: #ffffff;
+}
+
+html[data-a11y-underline="on"] a {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
