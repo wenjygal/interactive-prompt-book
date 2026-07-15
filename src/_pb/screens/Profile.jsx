@@ -19,6 +19,7 @@ export default function Profile() {
   const [fileName, setFileName] = useState("");
   const [isDragActive, setIsDragActive] = useState(false);
   const [isFileLoading, setIsFileLoading] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [savedMessage, setSavedMessage] = useState("");
   const { message: toastMessage, show: showToast } = useToast();
   const fileInputRef = useRef(null);
