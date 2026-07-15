@@ -5,7 +5,7 @@ import { PROFILE_FIELDS } from "../data/profileFields.js";
 import { CATEGORIES, categoryLabel } from "../data/categories.js";
 import { extractPlaceholders } from "../data/promptsCatalog.js";
 import { fieldKeyForPlaceholder } from "../data/placeholderFieldMap.js";
-import { analyzeProfileCsv, analyzeProfileText } from "../lib/profileParser.js";
+import { analyzeProfileCsv, analyzeProfileText, analyzeProfileTextAI } from "../lib/profileParser.js";
 import { classifyPromptText } from "../lib/promptClassifier.js";
 import { storage } from "../lib/storage.js";
 import { useToast } from "../lib/useToast.js";
