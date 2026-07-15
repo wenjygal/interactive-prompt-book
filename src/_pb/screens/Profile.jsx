@@ -191,8 +191,8 @@ export default function Profile() {
         </div>
 
         <div className={styles.actionsRow}>
-          <button type="button" className={styles.primaryButton} onClick={handleAnalyze} disabled={!intakeText.trim()}>
-            נתח אוטומטית
+          <button type="button" className={styles.primaryButton} onClick={handleAnalyze} disabled={!intakeText.trim() || isAnalyzing}>
+            {isAnalyzing ? "מנתח עם AI..." : "נתח אוטומטית עם AI"}
           </button>
           {hasSuggestions && (
             <button type="button" className={styles.secondaryButton} onClick={handleConfirmAll}>
