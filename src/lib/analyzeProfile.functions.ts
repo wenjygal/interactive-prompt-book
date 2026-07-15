@@ -3,30 +3,38 @@ import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { generateText, Output, NoObjectGeneratedError } from "ai";
 import { z } from "zod";
 
-const FieldSchema = z
-  .object({
-    value: z.string().nullable(),
-    confidence: z.enum(["high", "low", "none"]),
-  })
-  .nullable();
+// Schema פשוט: לכל שדה או ערך מחרוזת או null. אין enums מקוננים / bounds.
+const nullableString = z.string().nullable();
 
 const ResultSchema = z.object({
-  companyName: FieldSchema,
-  whatCompanyDoes: FieldSchema,
-  targetAudience: FieldSchema,
-  companyStage: FieldSchema,
-  market: FieldSchema,
-  corePain: FieldSchema,
-  solution: FieldSchema,
-  businessGoal: FieldSchema,
-  channels: FieldSchema,
-  language: FieldSchema,
-  tone: FieldSchema,
+  companyName: nullableString,
+  whatCompanyDoes: nullableString,
+  targetAudience: nullableString,
+  companyStage: nullableString,
+  market: nullableString,
+  corePain: nullableString,
+  solution: nullableString,
+  businessGoal: nullableString,
+  channels: nullableString,
+  language: nullableString,
+  tone: nullableString,
 });
 
 const SYSTEM = `אתה עוזר שמנתח תיאור עסק בעברית ומחלץ ממנו שדות פרופיל.
-החזר JSON בלבד לפי הסכמה. אל תמציא נתונים — אם שדה לא מופיע בטקסט, החזר null.
-confidence "high" = הערך נאמר במפורש בטקסט. "low" = הסקת מסקנה עקיפה. "none" = לא זוהה (החזר null במקרה זה).`;
+החזר JSON בלבד לפי הסכמה. כל שדה חייב להיות מחרוזת (הערך שזוהה) או null אם לא זוהה.
+אל תמציא נתונים — אם שדה לא נאמר בטקסט או לא ניתן להסיק ממנו, החזר null.
+שדות:
+- companyName: שם החברה/העסק
+- whatCompanyDoes: מה החברה עושה בקצרה
+- targetAudience: קהל היעד
+- companyStage: שלב החברה (למשל: seed, pre-seed, growth)
+- market: השוק בו החברה פועלת
+- corePain: הכאב המרכזי שהחברה פותרת
+- solution: הפתרון שהחברה מציעה
+- businessGoal: המטרה העסקית המרכזית
+- channels: ערוצי שיווק/הפצה
+- language: שפת פעילות ("עברית" אם לא צוין אחרת)
+- tone: טון הדיבור של המותג`;
 
 export const analyzeProfileWithAI = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => z.object({ text: z.string().min(1) }).parse(input))
