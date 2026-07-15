@@ -151,8 +151,8 @@ function DescriptionMode() {
           />
         </div>
         <div className={styles.actionsRow}>
-          <button type="button" className={styles.primaryButton} onClick={handleAnalyze} disabled={!text.trim()}>
-            נתח
+          <button type="button" className={styles.primaryButton} onClick={handleAnalyze} disabled={!text.trim() || isAnalyzing}>
+            {isAnalyzing ? "מנתח עם AI..." : "נתח עם AI"}
           </button>
         </div>
       </div>
