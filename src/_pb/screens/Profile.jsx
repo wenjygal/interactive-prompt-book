@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import styles from "./Profile.module.css";
 import { PROFILE_FIELDS, emptyProfile } from "../data/profileFields.js";
 import { storage } from "../lib/storage.js";
-import { analyzeProfileCsv, analyzeProfileText } from "../lib/profileParser.js";
+import { analyzeProfileCsv, analyzeProfileText, analyzeProfileTextAI } from "../lib/profileParser.js";
 import ProfileField from "../components/ProfileField.jsx";
 import Spinner from "../components/Spinner.jsx";
 import { useToast } from "../lib/useToast.js";
