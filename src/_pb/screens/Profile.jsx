@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import styles from "./Profile.module.css";
 import { PROFILE_FIELDS, emptyProfile } from "../data/profileFields.js";
 import { storage } from "../lib/storage.js";
-import { analyzeProfileCsv, analyzeProfileText } from "../lib/profileParser.js";
+import { analyzeProfileCsv, analyzeProfileText, analyzeProfileTextAI } from "../lib/profileParser.js";
 import ProfileField from "../components/ProfileField.jsx";
 import Spinner from "../components/Spinner.jsx";
 import { useToast } from "../lib/useToast.js";
@@ -19,6 +19,7 @@ export default function Profile() {
   const [fileName, setFileName] = useState("");
   const [isDragActive, setIsDragActive] = useState(false);
   const [isFileLoading, setIsFileLoading] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [savedMessage, setSavedMessage] = useState("");
   const { message: toastMessage, show: showToast } = useToast();
   const fileInputRef = useRef(null);
@@ -36,10 +37,33 @@ export default function Profile() {
     });
   }
 
+  async function runAiAnalysis(text) {
+    setIsAnalyzing(true);
+    try {
+      const suggestions = await analyzeProfileTextAI(text);
+      if (Object.keys(suggestions).length === 0) {
+        showToast("לא זוהו שדות בטקסט הזה — נסו טקסט מפורט יותר");
+      } else {
+        applySuggestions(suggestions);
+        showToast(`ה-AI זיהה ${Object.keys(suggestions).length} שדות ✓`);
+      }
+    } catch (err) {
+      // נפילה חכמה: מנסים parser רגקסי כגיבוי
+      const fallback = analyzeProfileText(text);
+      if (Object.keys(fallback).length > 0) {
+        applySuggestions(fallback);
+        showToast("ניתוח AI נכשל — הופעל ניתוח מקומי כגיבוי");
+      } else {
+        showToast(err?.message || "ניתוח נכשל, נסו שוב");
+      }
+    } finally {
+      setIsAnalyzing(false);
+    }
+  }
+
   function handleAnalyze() {
     if (!intakeText.trim()) return;
-    const suggestions = analyzeProfileText(intakeText);
-    applySuggestions(suggestions);
+    runAiAnalysis(intakeText);
   }
 
   function handleFile(file) {
@@ -47,12 +71,15 @@ export default function Profile() {
     setFileName(file.name);
     setIsFileLoading(true);
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       const text = String(reader.result || "");
       setIntakeText(text);
-      const suggestions = file.name.toLowerCase().endsWith(".csv") ? analyzeProfileCsv(text) : analyzeProfileText(text);
-      applySuggestions(suggestions);
       setIsFileLoading(false);
+      if (file.name.toLowerCase().endsWith(".csv")) {
+        applySuggestions(analyzeProfileCsv(text));
+      } else {
+        await runAiAnalysis(text);
+      }
     };
     reader.onerror = () => {
       setIsFileLoading(false);
@@ -164,8 +191,8 @@ export default function Profile() {
         </div>
 
         <div className={styles.actionsRow}>
-          <button type="button" className={styles.primaryButton} onClick={handleAnalyze} disabled={!intakeText.trim()}>
-            נתח אוטומטית
+          <button type="button" className={styles.primaryButton} onClick={handleAnalyze} disabled={!intakeText.trim() || isAnalyzing}>
+            {isAnalyzing ? "מנתח עם AI..." : "נתח אוטומטית עם AI"}
           </button>
           {hasSuggestions && (
             <button type="button" className={styles.secondaryButton} onClick={handleConfirmAll}>

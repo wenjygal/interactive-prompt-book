@@ -1,4 +1,21 @@
 import { PROFILE_FIELDS } from "../data/profileFields.js";
+import { analyzeProfileWithAI } from "../../lib/analyzeProfile.functions";
+
+// מנתח AI: קורא ל-Lovable AI Gateway בשרת ומחזיר הצעות בפורמט התואם ל-analyzeProfileText.
+// זורק שגיאה עם message קריא בעברית אם הקריאה נכשלה.
+export async function analyzeProfileTextAI(text) {
+  if (!text || !text.trim()) return {};
+  const res = await analyzeProfileWithAI({ data: { text } });
+  if (!res.ok) {
+    throw new Error(res.error);
+  }
+  const suggestions = {};
+  for (const [key, value] of Object.entries(res.fields)) {
+    if (typeof value !== "string" || !value.trim()) continue;
+    suggestions[key] = { value: value.trim(), status: "suggested" };
+  }
+  return suggestions;
+}
 
 // מילות מפתח/כינויים לכל שדה, לזיהוי שורות "שדה: ערך" בטקסט חופשי.
 // מסודר מהארוך לקצר כדי שהתאמה ארוכה (למשל "שם החברה") תנצח התאמה קצרה יותר ("שם").
