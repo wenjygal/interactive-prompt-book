@@ -10,10 +10,9 @@ export async function analyzeProfileTextAI(text) {
     throw new Error(res.error);
   }
   const suggestions = {};
-  for (const [key, field] of Object.entries(res.fields)) {
-    if (!field || !field.value || !field.value.trim()) continue;
-    const status = field.confidence === "high" ? "suggested" : "predicted";
-    suggestions[key] = { value: field.value.trim(), status };
+  for (const [key, value] of Object.entries(res.fields)) {
+    if (typeof value !== "string" || !value.trim()) continue;
+    suggestions[key] = { value: value.trim(), status: "suggested" };
   }
   return suggestions;
 }
