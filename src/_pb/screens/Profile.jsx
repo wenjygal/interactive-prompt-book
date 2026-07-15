@@ -37,10 +37,33 @@ export default function Profile() {
     });
   }
 
+  async function runAiAnalysis(text) {
+    setIsAnalyzing(true);
+    try {
+      const suggestions = await analyzeProfileTextAI(text);
+      if (Object.keys(suggestions).length === 0) {
+        showToast("לא זוהו שדות בטקסט הזה — נסו טקסט מפורט יותר");
+      } else {
+        applySuggestions(suggestions);
+        showToast(`ה-AI זיהה ${Object.keys(suggestions).length} שדות ✓`);
+      }
+    } catch (err) {
+      // נפילה חכמה: מנסים parser רגקסי כגיבוי
+      const fallback = analyzeProfileText(text);
+      if (Object.keys(fallback).length > 0) {
+        applySuggestions(fallback);
+        showToast("ניתוח AI נכשל — הופעל ניתוח מקומי כגיבוי");
+      } else {
+        showToast(err?.message || "ניתוח נכשל, נסו שוב");
+      }
+    } finally {
+      setIsAnalyzing(false);
+    }
+  }
+
   function handleAnalyze() {
     if (!intakeText.trim()) return;
-    const suggestions = analyzeProfileText(intakeText);
-    applySuggestions(suggestions);
+    runAiAnalysis(intakeText);
   }
 
   function handleFile(file) {
@@ -48,12 +71,15 @@ export default function Profile() {
     setFileName(file.name);
     setIsFileLoading(true);
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       const text = String(reader.result || "");
       setIntakeText(text);
-      const suggestions = file.name.toLowerCase().endsWith(".csv") ? analyzeProfileCsv(text) : analyzeProfileText(text);
-      applySuggestions(suggestions);
       setIsFileLoading(false);
+      if (file.name.toLowerCase().endsWith(".csv")) {
+        applySuggestions(analyzeProfileCsv(text));
+      } else {
+        await runAiAnalysis(text);
+      }
     };
     reader.onerror = () => {
       setIsFileLoading(false);
