@@ -5,7 +5,7 @@ import { PROFILE_FIELDS } from "../data/profileFields.js";
 import { CATEGORIES, categoryLabel } from "../data/categories.js";
 import { extractPlaceholders } from "../data/promptsCatalog.js";
 import { fieldKeyForPlaceholder } from "../data/placeholderFieldMap.js";
-import { analyzeProfileCsv, analyzeProfileText } from "../lib/profileParser.js";
+import { analyzeProfileCsv, analyzeProfileText, analyzeProfileTextAI } from "../lib/profileParser.js";
 import { classifyPromptText } from "../lib/promptClassifier.js";
 import { storage } from "../lib/storage.js";
 import { useToast } from "../lib/useToast.js";
@@ -56,19 +56,44 @@ function DescriptionMode() {
   const [text, setText] = useState("");
   const [suggestions, setSuggestions] = useState(null);
   const [isFileLoading, setIsFileLoading] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const { message, show } = useToast();
   const fileInputRef = useRef(null);
+
+  async function runAiOn(content) {
+    setIsAnalyzing(true);
+    try {
+      const result = await analyzeProfileTextAI(content);
+      setSuggestions(result);
+      const count = Object.keys(result).length;
+      if (count === 0) show("לא זוהו שדות בטקסט הזה");
+      else show(`ה-AI זיהה ${count} שדות ✓`);
+    } catch (err) {
+      const fallback = analyzeProfileText(content);
+      setSuggestions(fallback);
+      if (Object.keys(fallback).length > 0) {
+        show("ניתוח AI נכשל — הופעל ניתוח מקומי כגיבוי");
+      } else {
+        show(err?.message || "ניתוח נכשל, נסו שוב");
+      }
+    } finally {
+      setIsAnalyzing(false);
+    }
+  }
 
   function handleFile(file) {
     if (!file) return;
     setIsFileLoading(true);
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       const content = String(reader.result || "");
       setText(content);
-      const result = file.name.toLowerCase().endsWith(".csv") ? analyzeProfileCsv(content) : analyzeProfileText(content);
-      setSuggestions(result);
       setIsFileLoading(false);
+      if (file.name.toLowerCase().endsWith(".csv")) {
+        setSuggestions(analyzeProfileCsv(content));
+      } else {
+        await runAiOn(content);
+      }
     };
     reader.onerror = () => {
       setIsFileLoading(false);
@@ -79,7 +104,7 @@ function DescriptionMode() {
 
   function handleAnalyze() {
     if (!text.trim()) return;
-    setSuggestions(analyzeProfileText(text));
+    runAiOn(text);
   }
 
   function handleConfirmAll() {
@@ -126,8 +151,8 @@ function DescriptionMode() {
           />
         </div>
         <div className={styles.actionsRow}>
-          <button type="button" className={styles.primaryButton} onClick={handleAnalyze} disabled={!text.trim()}>
-            נתח
+          <button type="button" className={styles.primaryButton} onClick={handleAnalyze} disabled={!text.trim() || isAnalyzing}>
+            {isAnalyzing ? "מנתח עם AI..." : "נתח עם AI"}
           </button>
         </div>
       </div>

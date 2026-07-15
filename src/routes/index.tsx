@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
       { title: "ספר פרומפטים חכם" },
       { name: "description", content: "ספר פרומפטים חכם לעסקים - יצירה, ניהול ושיתוף פרומפטים מותאמים אישית" },
       { property: "og:title", content: "ספר פרומפטים חכם" },
-      { property: "og:description", content: "ספר פרומפטים חכם לעסקים" },
+      { property: "og:description", content: "ספר פרומפטים חכם לעסקים - יצירה, ניהול ושיתוף פרומפטים מותאמים אישית" },
     ],
   }),
   component: Index,
