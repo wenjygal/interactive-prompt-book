@@ -63,6 +63,22 @@ export const analyzeProfileWithAI = createServerFn({ method: "POST" })
       return { ok: true as const, fields: output };
     } catch (error) {
       if (NoObjectGeneratedError.isInstance(error)) {
+        // ננסה לפרק את הטקסט הגולמי כ-JSON כגיבוי לפני שנוותר
+        try {
+          const raw = (error as { text?: string }).text ?? "";
+          const match = raw.match(/\{[\s\S]*\}/);
+          if (match) {
+            const parsed = JSON.parse(match[0]);
+            const partial: Record<string, string | null> = {};
+            for (const key of Object.keys(ResultSchema.shape)) {
+              const v = parsed?.[key];
+              partial[key] = typeof v === "string" && v.trim() ? v : null;
+            }
+            return { ok: true as const, fields: partial as z.infer<typeof ResultSchema> };
+          }
+        } catch {
+          // נופלים לשגיאה למטה
+        }
         return { ok: false as const, error: "לא הצלחנו לנתח את הטקסט. נסו טקסט מפורט יותר." };
       }
       const message = error instanceof Error ? error.message : String(error);
