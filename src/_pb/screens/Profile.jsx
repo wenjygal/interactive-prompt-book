@@ -42,7 +42,7 @@ export default function Profile() {
     try {
       const suggestions = await analyzeProfileTextAI(text);
       if (Object.keys(suggestions).length === 0) {
-        showToast("לא זוהו שדות בטקסט הזה — נסו טקסט מפורט יותר");
+        showToast("לא זוהו שדות בטקסט הזה — לנסות טקסט מפורט יותר");
       } else {
         applySuggestions(suggestions);
         showToast(`ה-AI זיהה ${Object.keys(suggestions).length} שדות ✓`);
@@ -54,7 +54,7 @@ export default function Profile() {
         applySuggestions(fallback);
         showToast("ניתוח AI נכשל — הופעל ניתוח מקומי כגיבוי");
       } else {
-        showToast(err?.message || "ניתוח נכשל, נסו שוב");
+        showToast(err?.message || "ניתוח נכשל, לנסות שוב");
       }
     } finally {
       setIsAnalyzing(false);
@@ -83,7 +83,7 @@ export default function Profile() {
     };
     reader.onerror = () => {
       setIsFileLoading(false);
-      showToast("קריאת הקובץ נכשלה — נסו קובץ אחר");
+      showToast("קריאת הקובץ נכשלה — לנסות קובץ אחר");
     };
     reader.readAsText(file);
   }

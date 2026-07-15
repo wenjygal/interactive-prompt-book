@@ -74,7 +74,7 @@ function DescriptionMode() {
       if (Object.keys(fallback).length > 0) {
         show("ניתוח AI נכשל — הופעל ניתוח מקומי כגיבוי");
       } else {
-        show(err?.message || "ניתוח נכשל, נסו שוב");
+        show(err?.message || "ניתוח נכשל, לנסות שוב");
       }
     } finally {
       setIsAnalyzing(false);
