@@ -1,5 +1,5 @@
 import { PROFILE_FIELDS } from "../data/profileFields.js";
-import { analyzeProfileWithAI } from "../../lib/analyze-profile.functions";
+import { analyzeProfileWithAI } from "../../lib/analyzeProfile.functions";
 
 // מנתח AI: קורא ל-Lovable AI Gateway בשרת ומחזיר הצעות בפורמט התואם ל-analyzeProfileText.
 // זורק שגיאה עם message קריא בעברית אם הקריאה נכשלה.
