@@ -212,7 +212,7 @@ export default function PromptEditor() {
       <div className={styles.layout}>
         <div className={styles.promptPane}>
           <div className={styles.promptPaneHead}>
-            <h3 className={styles.promptPaneTitle}>הפרומפט המלא</h3>
+            <h2 className={styles.promptPaneTitle}>הפרומפט המלא</h2>
             <div className={styles.legend}>
               <span className={styles.legendItem}><span className={styles.legendDot} data-tone="confirmed" />מלא</span>
               <span className={styles.legendItem}><span className={styles.legendDot} data-tone="suggested" />מוצע</span>
@@ -238,7 +238,7 @@ export default function PromptEditor() {
         </div>
 
         <div className={styles.rubricPanel}>
-          <h3 className={styles.rubricPanelTitle}>מילוי שדות</h3>
+          <h2 className={styles.rubricPanelTitle}>מילוי שדות</h2>
           {labels.map((label) => {
             const state = placeholders[label];
             return (

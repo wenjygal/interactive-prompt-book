@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://boost-me-interactive-prompt-book.lovable.app/sitemap.xml
