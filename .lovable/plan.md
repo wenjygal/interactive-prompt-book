@@ -1,44 +1,17 @@
-# החלפת ניתוח הפרופיל בניתוח AI אמיתי
+Standardize the two email addresses in the app to a single, correct address and ensure both are clickable mailto links.
 
-## הבעיה
-הפונקציה `analyzeProfileText` ב־`src/_pb/lib/profileParser.js` היום היא רק Regex שמחפש שורות בסגנון "שם החברה: ...". על תיאור עסק חופשי בעברית היא כמעט לא מזהה כלום — ולכן נראה שה"AI לא עובד". בפועל אין שם קריאת AI בכלל.
+1. Findings
+- `src/_pb/screens/PrivacyPolicy.jsx:54` already uses `mailto:meimagineai@gmail.com`.
+- `src/_pb/screens/AccessibilityStatement.jsx:54` uses `mailto:meimaginai@gmail.com` (typo: missing the second "e").
 
-## הפתרון
-להוסיף server function שקוראת ל־Lovable AI (Gemini) עם schema מובנה שמחזירה את 11 שדות הפרופיל, ולחבר אותה במקום הפרסר הרגקסי גם ב־`Profile.jsx` וגם ב־`Analyze.jsx`.
+2. Changes
+- Update `AccessibilityStatement.jsx` to point to `mailto:meimagineai@gmail.com` with the same visible text.
+- Verify both links remain clickable `<a>` tags with `href="mailto:..."`.
+- No other plain-text or unlinked email addresses were found in the source.
 
-## שלבים
+3. Files to edit
+- `src/_pb/screens/AccessibilityStatement.jsx` (line 54)
 
-1. **הפעלת Lovable Cloud** (חובה כדי לקבל `LOVABLE_API_KEY` בשרת). זה נדרש פעם אחת.
-
-2. **יצירת server function** ב־`src/lib/analyze-profile.functions.ts`:
-   - `createServerFn({ method: "POST" })` שמקבל `{ text: string }`.
-   - קורא ל־`google/gemini-3-flash-preview` דרך `@ai-sdk/openai-compatible` + `Lovable-API-Key` header.
-   - משתמש ב־`Output.object` עם Zod schema של 11 השדות (companyName, whatCompanyDoes, targetAudience, companyStage, market, corePain, solution, businessGoal, channels, language, tone) — כל שדה `string | null`.
-   - מחזיר גם רמת ודאות פר־שדה (`suggested` אם זוהה במפורש בטקסט, `predicted` אם נגזר בעקיפין).
-
-3. **חיבור לצד הלקוח**:
-   - ב־`src/_pb/lib/profileParser.js` להוסיף `analyzeProfileTextAI(text)` שמייבא את ה־server fn ב־dynamic import ומחזיר אותו פורמט שהקוד הקיים מצפה לו (`{ [key]: { value, status } }`).
-   - להשאיר את הפונקציה הרגקסית כ־fallback מיידי אם ה־AI נכשל.
-   - `analyzeProfileCsv` נשאר כמו שהוא (CSV אמיתי לא צריך AI).
-
-4. **עדכון המסכים**:
-   - `Profile.jsx` — `handleAnalyze` ו־`handleFile` (לא CSV) נעשים async, מציגים spinner בזמן הקריאה, ומראים toast על שגיאה (למשל 402/429 מה־gateway).
-   - `Analyze.jsx` (DescriptionMode) — אותו דבר: כפתור "נתח" הופך ל־async עם מצב טעינה.
-
-5. **טיפול בשגיאות**:
-   - `429` → toast: "עומס זמני, נסו שוב בעוד רגע".
-   - `402` → toast: "נגמרו הקרדיטים ל־AI — יש להוסיף קרדיטים בהגדרות".
-   - כל שגיאה אחרת → נופלים ל־parser הרגקסי הישן וממשיכים.
-
-## פרטים טכניים
-
-- Server function חיה תחת `src/lib/` (client-safe path), לא תחת `src/server/`.
-- `process.env.LOVABLE_API_KEY` נקרא רק בתוך `.handler()`.
-- אין שינוי ב־storage / במבנה הפרופיל — רק המקור של ההצעות משתנה.
-- אין שינוי ב־UI/עיצוב מעבר להוספת מצב טעינה בכפתור "נתח".
-
-## קבצים שישתנו
-- **חדש**: `src/lib/analyze-profile.functions.ts`
-- `src/_pb/lib/profileParser.js` — הוספת `analyzeProfileTextAI`
-- `src/_pb/screens/Profile.jsx` — async analyze + loading state
-- `src/_pb/screens/Analyze.jsx` — async analyze + loading state
+4. Validation
+- Search the source again to confirm no other email addresses remain unlinked or inconsistent.
+- Spot-check the accessibility statement page in the preview to confirm the link is clickable and opens the mail client.

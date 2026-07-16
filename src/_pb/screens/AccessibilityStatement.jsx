@@ -51,7 +51,7 @@ export default function AccessibilityStatement() {
         <div className={styles.contactBox}>
           <p className={styles.text}>
             נשמח לשמוע ולתקן. אפשר לפנות אלינו בכתובת{" "}
-            <a href="mailto:meimaginai@gmail.com">meimaginai@gmail.com</a>.
+            <a href="mailto:meimagineai@gmail.com">meimagineai@gmail.com</a>.
           </p>
         </div>
       </div>
