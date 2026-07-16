@@ -77,41 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ספר פרומפטים חכם — יצירה וניהול פרומפטים לעסקים" },
-      { name: "description", content: "ספר הפרומפטים שלך לעסקים - צור, נהל ושתף פרומפטים מותאמים אישית ל-AI בקלות ובמהירות" },
+      { title: "ספר פרומפטים חכם" },
+      { name: "description", content: "ספר פרומפטים חכם לעסקים - יצירה, ניהול ושיתוף פרומפטים מותאמים אישית" },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "ספר פרומפטים חכם — יצירה וניהול פרומפטים לעסקים" },
-      { property: "og:description", content: "ספר הפרומפטים שלך לעסקים - צור, נהל ושתף פרומפטים מותאמים אישית ל-AI בקלות ובמהירות" },
+      { property: "og:title", content: "ספר פרומפטים חכם" },
+      { property: "og:description", content: "ספר פרומפטים חכם לעסקים - יצירה, ניהול ושיתוף פרומפטים מותאמים אישית" },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "ספר פרומפטים חכם" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "ספר פרומפטים חכם — יצירה וניהול פרומפטים לעסקים" },
-      { name: "twitter:description", content: "ספר הפרומפטים שלך לעסקים - צור, נהל ושתף פרומפטים מותאמים אישית ל-AI בקלות ובמהירות" },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/056c3608-7894-4a44-829c-06d94c227074/id-preview-de68fdc8--4bc15080-9f5b-48f3-9479-05d3d544d360.lovable.app-1784063356919.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/056c3608-7894-4a44-829c-06d94c227074/id-preview-de68fdc8--4bc15080-9f5b-48f3-9479-05d3d544d360.lovable.app-1784063356919.png" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "WebSite",
-              name: "ספר פרומפטים חכם",
-              url: "https://boost-me-interactive-prompt-book.lovable.app/",
-              inLanguage: "he",
-              description: "ספר הפרומפטים שלך לעסקים - צור, נהל ושתף פרומפטים מותאמים אישית ל-AI בקלות ובמהירות",
-            },
-            {
-              "@type": "Organization",
-              name: "ספר פרומפטים חכם",
-              url: "https://boost-me-interactive-prompt-book.lovable.app/",
-            },
-          ],
-        }),
-      },
+      { name: "twitter:title", content: "ספר פרומפטים חכם" },
+      { name: "twitter:description", content: "ספר פרומפטים חכם לעסקים - יצירה, ניהול ושיתוף פרומפטים מותאמים אישית" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/NqttX4Xa8Hbvuy8XD8IgpGwKX7S2/social-images/social-1784238389649-cc3b43ed-0c5c-4bf9-9b89-0cd81707779f.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/NqttX4Xa8Hbvuy8XD8IgpGwKX7S2/social-images/social-1784238389649-cc3b43ed-0c5c-4bf9-9b89-0cd81707779f.webp" },
     ],
     links: [
       {
@@ -124,6 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Assistant:wght@400;500;600;700;800&display=swap",
       },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     ],
   }),
   shellComponent: RootShell,
