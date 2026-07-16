@@ -3,11 +3,9 @@ import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://boost-me-interactive-prompt-book.lovable.app/" }],
     meta: [
-      { title: "ספר פרומפטים חכם" },
-      { name: "description", content: "ספר פרומפטים חכם לעסקים - יצירה, ניהול ושיתוף פרומפטים מותאמים אישית" },
-      { property: "og:title", content: "ספר פרומפטים חכם" },
-      { property: "og:description", content: "ספר פרומפטים חכם לעסקים - יצירה, ניהול ושיתוף פרומפטים מותאמים אישית" },
+      { property: "og:url", content: "https://boost-me-interactive-prompt-book.lovable.app/" },
     ],
   }),
   component: Index,
