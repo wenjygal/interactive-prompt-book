@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
         <h2 className={styles.sectionTitle}>שאלות?</h2>
         <div className={styles.contactBox}>
           <p className={styles.text}>
-            אפשר לפנות אלינו בכתובת <a href="mailto:privacy@example.com">privacy@example.com</a>.
+            אפשר לפנות אלינו בכתובת <a href="mailto:meimagineai@gmail.com">meimagineai@gmail.com</a>.
           </p>
         </div>
       </div>
