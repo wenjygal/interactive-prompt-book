@@ -108,7 +108,7 @@ export default function Settings() {
             <div className={styles.toggleHelp}>מילוי אוטומטי של placeholders מהפרופיל בעת פתיחת פרומפט</div>
           </div>
           <label className={styles.switch}>
-            <input type="checkbox" checked={settings.autoSuggestEnabled} onChange={toggleAutoSuggest} />
+            <input type="checkbox" aria-label="הצעות אוטומטיות" checked={settings.autoSuggestEnabled} onChange={toggleAutoSuggest} />
             <span className={styles.switchTrack} />
           </label>
         </div>
