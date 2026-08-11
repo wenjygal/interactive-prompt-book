@@ -36,7 +36,7 @@ export default function A11yToolbar() {
   return (
     <div className={styles.wrap} ref={wrapRef}>
       {open && (
-        <div className={styles.panel} role="dialog" aria-label="סרגל נגישות">
+        <div className={styles.panel} role="group" aria-label="סרגל נגישות">
           <div className={styles.panelTitle}>הגדרות נגישות</div>
 
           <div className={styles.group}>

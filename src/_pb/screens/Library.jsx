@@ -142,11 +142,12 @@ export default function Library() {
             <input
               type="search"
               className={styles.searchInput}
+              aria-label="חיפוש בפרומפטים שמורים"
               placeholder="חיפוש בפרומפטים שמורים..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            <select className={styles.select} value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+            <select className={styles.select} aria-label="סינון לפי קטגוריה" value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
               <option value="all">כל הקטגוריות</option>
               {CATEGORIES.map((c) => (
                 <option key={c.key} value={c.key}>
@@ -154,7 +155,7 @@ export default function Library() {
                 </option>
               ))}
             </select>
-            <select className={styles.select} value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+            <select className={styles.select} aria-label="סינון לפי סטטוס" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
               {STATUS_OPTIONS.map((s) => (
                 <option key={s.value} value={s.value}>
                   {s.label}
@@ -165,6 +166,7 @@ export default function Library() {
               type="button"
               className={favoriteOnly ? `${styles.favToggle} ${styles.favToggleActive}` : styles.favToggle}
               onClick={() => setFavoriteOnly((v) => !v)}
+              aria-pressed={favoriteOnly}
             >
               ⭐ מועדפים בלבד
             </button>

@@ -149,7 +149,11 @@ export default function Profile() {
 
       <div className={styles.intakeCard}>
         <h2 className={styles.intakeHeading}>להדביק תיאור עסק, או לייבא קובץ</h2>
+        <label htmlFor="profile-intake" className="visually-hidden">
+          תיאור העסק שלך
+        </label>
         <textarea
+          id="profile-intake"
           className={styles.textarea}
           placeholder="להדביק כאן תיאור חופשי של העסק שלך — נזהה ממנו אוטומטית שדות כמו שם החברה, קהל היעד, הכאב המרכזי ועוד."
           value={intakeText}
@@ -171,6 +175,7 @@ export default function Profile() {
           }}
           role="button"
           tabIndex={0}
+          aria-label="בחירת קובץ .md או .csv לניתוח"
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") fileInputRef.current?.click();
           }}

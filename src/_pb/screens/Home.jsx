@@ -55,7 +55,7 @@ export default function Home() {
           {CATEGORIES.length} נושאים, {allPrompts.length} פרומפטים מוכנים
         </span>
       </div>
-      <div className={styles.catGrid} role="tablist" aria-label="קטגוריות פרומפטים">
+      <div className={styles.catGrid} aria-label="קטגוריות פרומפטים">
         {CATEGORIES.map((cat) => {
           const isActive = activeTab === cat.key && !trimmedQuery;
           const count = allPrompts.filter((p) => p.category === cat.key).length;
@@ -63,8 +63,7 @@ export default function Home() {
             <button
               key={cat.key}
               type="button"
-              role="tab"
-              aria-selected={isActive}
+              aria-pressed={isActive}
               className={isActive ? `${styles.catTile} ${styles.catTileActive}` : styles.catTile}
               style={{ "--cat": cat.color, "--cat-text": cat.tagText }}
               onClick={() => {
@@ -76,7 +75,7 @@ export default function Home() {
               <span className={styles.catIcon} style={{ background: cat.iconBg }}>
                 <cat.Icon size={18} color={cat.color} />
               </span>
-              <h3 className={styles.catName}>{cat.label}</h3>
+              <span className={styles.catName}>{cat.label}</span>
               <div className={styles.catCount}>{count} פרומפטים</div>
             </button>
           );

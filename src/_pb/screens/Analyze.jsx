@@ -26,11 +26,10 @@ export default function Analyze() {
       <h1 className={styles.title}>ניתוח תיאור עסק וייבוא פרומפטים</h1>
       <p className={styles.subtitle}>לנתח תיאור עסק חדש כדי לעדכן את הפרופיל, או לייבא פרומפט חיצוני שיסווג אוטומטית לספר.</p>
 
-      <div className={styles.modeTabs} role="tablist">
+      <div className={styles.modeTabs}>
         <button
           type="button"
-          role="tab"
-          aria-selected={mode === "description"}
+          aria-pressed={mode === "description"}
           className={mode === "description" ? `${styles.modeTab} ${styles.modeTabActive}` : styles.modeTab}
           onClick={() => setMode("description")}
         >
@@ -38,8 +37,7 @@ export default function Analyze() {
         </button>
         <button
           type="button"
-          role="tab"
-          aria-selected={mode === "import"}
+          aria-pressed={mode === "import"}
           className={mode === "import" ? `${styles.modeTab} ${styles.modeTabActive}` : styles.modeTab}
           onClick={() => setMode("import")}
         >
@@ -124,7 +122,11 @@ function DescriptionMode() {
   return (
     <div>
       <div className={styles.card}>
+        <label htmlFor="analyze-description" className="visually-hidden">
+          תיאור העסק
+        </label>
         <textarea
+          id="analyze-description"
           className={styles.textarea}
           placeholder="להדביק כאן תיאור עסק חופשי..."
           value={text}
@@ -140,6 +142,13 @@ function DescriptionMode() {
           }}
           role="button"
           tabIndex={0}
+          aria-label="בחירת קובץ .md או .csv לניתוח"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              fileInputRef.current?.click();
+            }
+          }}
         >
           {isFileLoading ? <Spinner label="קורא את הקובץ..." /> : <span>לגרור לכאן קובץ .md או .csv, או ללחוץ לבחירה</span>}
           <input
@@ -159,7 +168,7 @@ function DescriptionMode() {
 
       {suggestions && (
         <div className={styles.card}>
-          <h2 className={styles.resultsHeading}>
+          <h2 className={styles.resultsHeading} aria-live="polite">
             {suggestionCount > 0 ? `נמצאו הצעות ל-${suggestionCount} שדות` : "לא זוהו שדות בטקסט הזה"}
           </h2>
           {PROFILE_FIELDS.filter((f) => suggestions[f.key]).map((field) => (
@@ -250,7 +259,11 @@ function ImportMode() {
   return (
     <div>
       <div className={styles.card}>
+        <label htmlFor="import-prompt-text" className="visually-hidden">
+          תוכן הפרומפט לייבוא
+        </label>
         <textarea
+          id="import-prompt-text"
           className={styles.textarea}
           placeholder="להדביק כאן פרומפט חיצוני..."
           value={text}
@@ -266,6 +279,13 @@ function ImportMode() {
           }}
           role="button"
           tabIndex={0}
+          aria-label="בחירת קובץ טקסט לייבוא"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              fileInputRef.current?.click();
+            }
+          }}
         >
           {isFileLoading ? <Spinner label="קורא את הקובץ..." /> : <span>לגרור לכאן קובץ טקסט, או ללחוץ לבחירה</span>}
           <input

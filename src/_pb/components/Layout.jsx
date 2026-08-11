@@ -51,7 +51,7 @@ export default function Layout() {
 
   return (
     <div className={styles.page}>
-      <a href="#main-content" className="visually-hidden">
+      <a href="#main-content" className="skip-link">
         דלג לתוכן הראשי
       </a>
       <aside className={styles.sidebar} ref={sidebarRef}>
