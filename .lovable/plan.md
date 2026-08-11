@@ -1,17 +1,34 @@
-Standardize the two email addresses in the app to a single, correct address and ensure both are clickable mailto links.
+# סבב נגישות — ממצאים ותיקונים
 
-1. Findings
-- `src/_pb/screens/PrivacyPolicy.jsx:54` already uses `mailto:meimagineai@gmail.com`.
-- `src/_pb/screens/AccessibilityStatement.jsx:54` uses `mailto:meimaginai@gmail.com` (typo: missing the second "e").
+עברתי על כל המסכים והקומפוננטות. הבסיס טוב (skip link, פוקוס גלוי, aria-label בכפתורי אייקון, סרגל נגישות, prefers-reduced-motion). להלן מה שלא עומד בתקן ומה לתקן.
 
-2. Changes
-- Update `AccessibilityStatement.jsx` to point to `mailto:meimagineai@gmail.com` with the same visible text.
-- Verify both links remain clickable `<a>` tags with `href="mailto:..."`.
-- No other plain-text or unlinked email addresses were found in the source.
+## קריטי — חוסם משתמשים
 
-3. Files to edit
-- `src/_pb/screens/AccessibilityStatement.jsx` (line 54)
+1. **אזור גרירת קובץ לא נגיש למקלדת** — `Analyze.jsx` (שני מקומות) ו-`Profile.jsx`: יש `role="button"` ו-`tabIndex={0}` אבל אין טיפול ב-Enter/Space, כך שמי שמנווט במקלדת לא יכול לבחור קובץ.
+   תיקון: הוספת `onKeyDown` ל-Enter/Space + `aria-label` מתאר.
+2. **שדות ללא תווית** — תיבות הטקסט החופשי ב-`Analyze.jsx` וב-`Profile.jsx`, חיפוש ב-`Library.jsx`, שתי רשימות הסינון ב-`Library.jsx`, ומתג "הצעות אוטומטיות" ב-`Settings.jsx` (checkbox בלי שם נגיש).
+   תיקון: `<label htmlFor>` מוסתר חזותית או `aria-label` לכל אחד. placeholder אינו תווית.
+3. **קישור "דלג לתוכן הראשי" לא נחשף בפוקוס** — הוא מקבל `.visually-hidden` ללא כלל `:focus`, כלומר נשאר בלתי נראה גם כשמגיעים אליו ב-Tab.
+   תיקון: מחלקת skip-link שנחשפת ב-`:focus-visible`.
 
-4. Validation
-- Search the source again to confirm no other email addresses remain unlinked or inconsistent.
-- Spot-check the accessibility statement page in the preview to confirm the link is clickable and opens the mail client.
+## אזהרות — פוגע בחוויה
+
+4. **טאבים לא תקינים** — `role="tablist"`/`role="tab"` ב-`Home.jsx` וב-`Analyze.jsx` בלי `tabpanel`, `aria-controls` וניווט בחצים. קורא מסך מכריז על מבנה שלא קיים.
+   תיקון: הסרת התפקידים והשארת כפתורים עם `aria-pressed` (הפשוט והנכון כאן).
+5. **דילוג ברמות כותרות** — ב-`Home.jsx` כרטיסי הקטגוריה משתמשים ב-`h3` אחרי `h1` ללא `h2` ביניהם.
+   תיקון: שינוי ל-`h2`, או ל-`span` אם אינם כותרות אמיתיות.
+6. **פאנל סרגל הנגישות מוגדר `role="dialog"`** בלי `aria-modal` ובלי מלכוד פוקוס — הכרזה מטעה.
+   תיקון: הסרת role="dialog" והשארת קבוצה עם `aria-label`, סגירה ב-Escape נשמרת.
+7. **אזורי לחיצה קטנים במובייל** — כפתור סרגל הנגישות (13px, ללא padding) וקישורי הפוטר מתחת ל-44×44.
+   תיקון: `min-height: 44px` ו-padding בפוטר ובסרגל.
+8. **`100vh` בגוף הדף** — נחתך בדפדפני מובייל.
+   תיקון: `min-height: 100dvh`.
+
+## מידע — שיפור
+
+9. מצב ניגודיות גבוהה מחליף את צבע הפעולה לכתום `#b45309`; הוא עובר AA על לבן, אבל אפשר להחליף לגוון כהה יותר לעקביות מיתוגית עם BOOST ME.
+10. אין `aria-live` על תוצאות הניתוח ב-`Analyze`/`Profile`, כך שסיום הניתוח לא מוכרז. Toast כבר מוכרז נכון.
+
+## פרטים טכניים
+
+קבצים שישתנו: `src/_pb/screens/Analyze.jsx`, `Profile.jsx`, `Library.jsx`, `Settings.jsx`, `Home.jsx`, `src/_pb/components/A11yToolbar.jsx`, `src/_pb/components/Footer.module.css`, `src/_pb/components/A11yToolbar.module.css`, `src/_pb/index.css`. כל השינויים בשכבת התצוגה בלבד — אין נגיעה בלוגיקה, בנתונים או ב-AI. אחרי התיקון אריץ בדיקת דפדפן על המסכים כדי לאמת ניווט מקלדת וחשיפת קישור הדילוג.
