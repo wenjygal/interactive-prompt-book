@@ -8,11 +8,16 @@ import { getProfileCompletion } from "../lib/profileStatus.js";
 
 const NAV_ITEMS = [
   { to: "/", label: "ספר הפרומפטים", end: true, Icon: BookIcon },
-  { to: "/profile", label: "העסק שלי", Icon: UserIcon },
+  { to: "/profile", label: "העסק שלי", Icon: UserIcon, showProgress: true },
   { to: "/analyze", label: "יבוא", Icon: ChartIcon },
   { to: "/library", label: "שמורים שלי", Icon: BookmarkIcon },
-  { to: "/settings", label: "הגדרות", Icon: SettingsIcon },
 ];
+
+const SETTINGS_ITEM = { to: "/settings", label: "הגדרות", Icon: SettingsIcon };
+
+function navClass({ isActive }) {
+  return isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink;
+}
 
 function useProfileCompletion() {
   const [percent] = useState(() => {
@@ -73,41 +78,22 @@ export default function Layout() {
         <div className={menuOpen ? `${styles.sidebarBody} ${styles.sidebarBodyOpen}` : styles.sidebarBody}>
           <nav className={styles.nav} aria-label="ניווט ראשי">
             {NAV_ITEMS.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.end}
-                className={({ isActive }) => (isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink)}
-              >
-                <span className={styles.badgeIcon}>
-                  <item.Icon size={18} />
-                </span>
-                {item.label}
+              <NavLink key={item.to} to={item.to} end={item.end} className={navClass}>
+                <item.Icon size={19} className={styles.navIcon} />
+                <span className={styles.navLabel}>{item.label}</span>
+                {item.showProgress && (
+                  <span className={styles.navProgress} aria-label={`פרופיל העסק מולא ב-${percent} אחוז`}>
+                    {percent}%
+                  </span>
+                )}
               </NavLink>
             ))}
           </nav>
 
-          <Link to="/profile" className={styles.profileWidget}>
-            <div className={styles.ringWrap}>
-              <svg width="46" height="46" viewBox="0 0 46 46">
-                <circle className={styles.ringTrack} cx="23" cy="23" r="18.5" />
-                <circle
-                  className={styles.ringFill}
-                  cx="23"
-                  cy="23"
-                  r="18.5"
-                  strokeDasharray={`${(percent / 100) * 116.2} 116.2`}
-                />
-              </svg>
-              <span className={styles.ringPct}>{percent}%</span>
-            </div>
-            <div>
-              <div className={styles.profileWidgetTitle}>ההתקדמות שלך בפרופיל</div>
-              <div className={styles.profileWidgetText}>
-                {percent === 0 ? "פרופיל עדיין ריק." : percent < 100 ? "פרופיל מוכן חלקית." : "פרופיל מוכן במלואו."}
-              </div>
-            </div>
-          </Link>
+          <NavLink to={SETTINGS_ITEM.to} className={(state) => `${navClass(state)} ${styles.navBottom}`}>
+            <SETTINGS_ITEM.Icon size={19} className={styles.navIcon} />
+            <span className={styles.navLabel}>{SETTINGS_ITEM.label}</span>
+          </NavLink>
         </div>
       </aside>
 

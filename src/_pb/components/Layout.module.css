@@ -18,10 +18,10 @@
   overflow-y: auto;
   background: var(--color-sidebar-bg);
   color: var(--color-sidebar-text);
-  padding: 28px 18px;
+  padding: 24px 14px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 32px;
   z-index: 30;
 }
 
@@ -69,7 +69,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 30px;
+  gap: 4px;
   min-height: 0;
 }
 
@@ -97,18 +97,17 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 12px;
+  padding: 0 6px;
   text-decoration: none;
   min-width: 0;
 }
 
 .logo {
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-lg);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1.5px solid rgba(255, 255, 255, 0.5);
-  box-shadow: var(--shadow-logo);
   flex-shrink: 0;
   background: #ffffff;
   display: flex;
@@ -136,9 +135,8 @@
   font-weight: 800;
   font-size: 16px;
   line-height: 1.25;
-  letter-spacing: 0.02em;
-  color: #ffffff;
-  max-width: 130px;
+  color: var(--color-sidebar-text);
+  white-space: nowrap;
 }
 
 @media (max-width: 880px) {
@@ -152,119 +150,78 @@
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
+/* nav item: plain icon + label. Active = soft fill + a cream bar on the inline-start edge */
 .navLink {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 9px 12px;
+  min-height: 44px;
+  padding: 0 12px;
   border-radius: var(--radius-md);
   color: var(--color-sidebar-text-idle);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 15px;
   text-decoration: none;
-  transition: background-color var(--duration-base) var(--ease-out), color var(--duration-base) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
 }
 
 .navLink:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--color-sidebar-text);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
-.navLinkActive {
-  background: var(--bm-paper);
-  color: var(--color-text-primary);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+.navLink:focus-visible {
+  outline: 3px solid var(--bm-paper);
+  outline-offset: -3px;
 }
 
+.navLinkActive,
 .navLinkActive:hover {
-  background: var(--bm-paper);
-  color: var(--color-text-primary);
-}
-
-.badgeIcon {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.14);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: var(--color-sidebar-text-idle);
-  transition: background-color var(--duration-base) var(--ease-out), border-color var(--duration-base) var(--ease-out), color var(--duration-base) var(--ease-out);
-}
-
-.navLinkActive .badgeIcon {
-  background: var(--color-text-primary);
-  border-color: var(--color-text-primary);
-  color: var(--bm-paper);
-}
-
-.profileWidget {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  background: var(--bm-paper-2);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  transform: rotate(0.8deg);
-  color: var(--color-text-primary);
-  box-shadow: var(--shadow-sidebar-widget);
-}
-
-.ringWrap {
-  position: relative;
-  width: 46px;
-  height: 46px;
-  flex-shrink: 0;
-}
-
-.ringWrap svg {
-  transform: rotate(-90deg);
-}
-
-.ringTrack {
-  fill: none;
-  stroke: #E3D5C6;
-  stroke-width: 4.5;
-}
-
-.ringFill {
-  fill: none;
-  stroke: var(--color-success);
-  stroke-width: 4.5;
-  stroke-linecap: round;
-  transition: stroke-dasharray var(--duration-base) var(--ease-out);
-}
-
-.ringPct {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--color-success);
-}
-
-.profileWidgetTitle {
+  color: var(--color-sidebar-text);
   font-weight: 700;
-  font-size: 13.5px;
-  margin-bottom: 3px;
-  color: var(--color-text-primary);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.profileWidgetText {
-  font-size: 11.5px;
-  color: var(--color-text-secondary);
-  line-height: 1.4;
+.navLinkActive::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--bm-paper);
+}
+
+.navIcon {
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+.navLinkActive .navIcon {
+  opacity: 1;
+}
+
+.navLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+.navProgress {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-sidebar-text-idle);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.navBottom {
+  margin-top: auto;
 }
 
 .main {
@@ -279,6 +236,3 @@
   }
 }
 
-@media (max-width: 880px) {
-  .profileWidget { transform: none; }
-}
