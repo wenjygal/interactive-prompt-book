@@ -103,7 +103,9 @@ export default function Layout() {
             </div>
             <div>
               <div className={styles.profileWidgetTitle}>ההתקדמות שלך בפרופיל</div>
-              <div className={styles.profileWidgetText}>פרופיל מוכן {percent < 100 ? "חלקית" : "במלואו"}.</div>
+              <div className={styles.profileWidgetText}>
+                {percent === 0 ? "פרופיל עדיין ריק." : percent < 100 ? "פרופיל מוכן חלקית." : "פרופיל מוכן במלואו."}
+              </div>
             </div>
           </Link>
         </div>
