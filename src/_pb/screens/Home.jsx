@@ -50,39 +50,6 @@ export default function Home() {
 
       <ProfileStatusBanner status={profileStatus} />
 
-      <div className={styles.sectionHeading}>
-        <h2>מה יש בספר הפרומפטים שלך</h2>
-        <span>
-          {CATEGORIES.length} נושאים, {allPrompts.length} פרומפטים מוכנים
-        </span>
-      </div>
-      <div className={styles.catGrid} aria-label="קטגוריות פרומפטים">
-        {CATEGORIES.map((cat) => {
-          const isActive = activeTab === cat.key && !trimmedQuery;
-          const count = allPrompts.filter((p) => p.category === cat.key).length;
-          return (
-            <button
-              key={cat.key}
-              type="button"
-              aria-pressed={isActive}
-              className={isActive ? `${styles.catTile} ${styles.catTileActive}` : styles.catTile}
-              style={{ "--cat": cat.color, "--cat-text": cat.tagText }}
-              onClick={() => {
-                setActiveTab(cat.key);
-                setQuery("");
-                trackEvent("tab_view", { tab: cat.key });
-              }}
-            >
-              <span className={styles.catIcon} style={{ background: cat.iconBg }}>
-                <cat.Icon size={18} color={cat.color} />
-              </span>
-              <span className={styles.catName}>{cat.label}</span>
-              <div className={styles.catCount}>{count} פרומפטים</div>
-            </button>
-          );
-        })}
-      </div>
-
       <div className={styles.searchWrap}>
         <label htmlFor="prompt-search" className="visually-hidden">
           חיפוש פרומפטים
@@ -96,6 +63,29 @@ export default function Home() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
+      </div>
+
+      <div className={styles.tabs} role="group" aria-label="נושאים">
+        {CATEGORIES.map((cat) => {
+          const isActive = activeTab === cat.key && !trimmedQuery;
+          const count = allPrompts.filter((p) => p.category === cat.key).length;
+          return (
+            <button
+              key={cat.key}
+              type="button"
+              aria-pressed={isActive}
+              className={isActive ? `${styles.tab} ${styles.tabActive}` : styles.tab}
+              onClick={() => {
+                setActiveTab(cat.key);
+                setQuery("");
+                trackEvent("tab_view", { tab: cat.key });
+              }}
+            >
+              {cat.label}
+              <span className={styles.tabCount}>{count}</span>
+            </button>
+          );
+        })}
       </div>
 
       {results.length === 0 && <p className={styles.empty}>לא נמצאו פרומפטים מתאימים.</p>}
@@ -116,12 +106,6 @@ export default function Home() {
           ))
         : (
             <>
-              {results.length > 0 && (
-                <div className={styles.sectionHeading}>
-                  <h2>{categoryLabel(activeTab)}</h2>
-                  <span>{results.length} פרומפטים</span>
-                </div>
-              )}
               <div className={styles.grid}>
                 {results.map((prompt) => (
                   <PromptCard key={prompt.id} prompt={prompt} profile={profile} />
