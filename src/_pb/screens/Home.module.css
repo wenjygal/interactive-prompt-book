@@ -9,7 +9,8 @@
 
 .subtitle {
   color: var(--color-text-secondary);
-  font-size: 15.5px;
+  font-size: 17px;
+  max-width: 38em;
 }
 
 .sectionHeading {
@@ -17,11 +18,14 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 11px;
-  margin: var(--space-5) 0 12px;
+  margin: var(--space-6) 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-text-primary);
 }
 
 .sectionHeading h2 {
-  font-size: 17.5px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 .sectionHeading span {
@@ -54,7 +58,7 @@
 }
 
 .catTile:hover {
-  box-shadow: 0 6px 16px rgba(42, 42, 61, 0.08);
+  box-shadow: var(--shadow-card-hover);
   border-color: var(--cat, var(--color-card-border));
 }
 
@@ -120,7 +124,7 @@
 .searchInput:focus {
   outline: none;
   border-color: var(--color-action);
-  box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.15);
+  box-shadow: 0 0 0 3px rgba(179, 12, 110, 0.15);
 }
 
 .grid {

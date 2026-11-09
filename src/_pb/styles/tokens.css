@@ -1,62 +1,74 @@
 /* Google Fonts loaded via <link> in root route to comply with Lightning CSS */
 
+/* BOOST ME design system. Vault: BOOST ME — DESIGN.md (source: boost-me.digital) */
 :root {
-  /* צבעים — מיתוג Boost Me: מגנטה/כתום, על גבי אותה מערכת רכיבים/מרווחים/צללים שבנינו */
-  --color-bg-primary: #f5f5f7;
-  --color-bg-primary-soft: #f5f5f7;
+  /* brand primitives */
+  --bm-plum: #2B1A2E;
+  --bm-paper: #FFF8F0;
+  --bm-paper-2: #F7EBDD;
+  --bm-ink-soft: #5E4A5F;
+  --bm-magenta: #E0128B;
+  --bm-magenta-deep: #B30C6E;
+  --bm-orange: #F68920;
+  --bm-orange-ink: #8A4300;
+  --bm-on-plum-soft: #E3CFDD;
+  --bm-swipe: linear-gradient(90deg, rgba(246,137,32,.38), rgba(224,18,139,.30));
+
+  /* surfaces: cream paper workspace on a plum desk (sidebar) */
+  --color-bg-primary: #FFF8F0;
+  --color-bg-primary-soft: #FFF8F0;
   --color-bg-secondary: #ffffff;
-  /* משטח "שקוע" לשדות קלט בתוך כרטיסים לבנים — נבדל בבירור מהכרטיס עצמו */
-  --color-surface-sunken: #f5f5f7;
-  --color-border: #e9e4e7;
-  --color-border-subtle: #e9e4e7;
-  --color-divider: #f1edef;
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: rgba(26, 26, 26, 0.6);
-  --color-text-faint: rgba(26, 26, 26, 0.4);
-  --color-action: #e0128b;
-  --color-action-hover: #c10f79;
-  --color-action-active: #a50d67;
+  --color-surface-sunken: #F7EBDD;
+  --color-border: #E3D5C6;
+  --color-border-subtle: #EADFD3;
+  --color-divider: #EFE4D8;
+  --color-text-primary: #2B1A2E;
+  --color-text-secondary: #5E4A5F;
+  --color-text-faint: #76637A;
+  /* action = magenta-deep (white text passes AA). Raw magenta is never small text on paper */
+  --color-action: #B30C6E;
+  --color-action-hover: #8F0958;
+  --color-action-active: #6E0744;
   --color-on-action: #ffffff;
-  --color-success: #1f8a5b;
-  --color-success-bg: #eaf7f1;
-  --color-success-border: #b7e3cd;
-  --color-success-text: #1f8a5b;
-  --color-info: #0284c7;
-  --color-info-bg: #e0f2fe;
-  --color-info-border: #7dd3fc;
-  --color-info-text: #0369a1;
-  --color-predicted-bg: #fdf0f8;
-  --color-predicted-text: #a10e6e;
-  --color-empty-bg: #f1edef;
-  --color-empty-border: #ddd6da;
-  --color-empty-text: rgba(26, 26, 26, 0.6);
+  --color-success: #12823F;
+  --color-success-bg: #E7F3EA;
+  --color-success-border: #B9DCC3;
+  --color-success-text: #0E6A33;
+  --color-info: #5E4A5F;
+  --color-info-bg: #F7EBDD;
+  --color-info-border: #E3CFDD;
+  --color-info-text: #3A2540;
+  --color-predicted-bg: #FCE7F2;
+  --color-predicted-text: #B30C6E;
+  --color-empty-bg: #F7EBDD;
+  --color-empty-border: #E3D5C6;
+  --color-empty-text: #5E4A5F;
   --color-card-bg: #ffffff;
-  --color-card-border: #e9e4e7;
+  --color-card-border: #EADFD3;
   --color-danger: #b3261e;
   --color-danger-hover: #8c1d14;
 
-  /* סרגל צד — גרדיאנט המותג הרשמי של Boost Me */
-  --color-sidebar-bg: linear-gradient(135deg, #e0128b 0%, #f68920 100%);
-  --color-sidebar-text: #ffffff;
-  --color-sidebar-text-idle: rgba(255, 255, 255, 0.85);
+  /* sidebar = the plum desk. No gradient: the brand gradient is reserved for the site's close section */
+  --color-sidebar-bg: #2B1A2E;
+  --color-sidebar-text: #FFF8F0;
+  --color-sidebar-text-idle: #E3CFDD;
 
-  /* קונטרולר מפולח (טאבים) */
-  --color-segmented-bg: #f1edef;
+  --color-segmented-bg: #F7EBDD;
 
-  /* טיפוגרפיה */
-  --font-main: "Assistant", "Segoe UI", system-ui, sans-serif;
-  --font-heading: "Rubik", "Assistant", system-ui, sans-serif;
-  --fs-h1: clamp(26px, 3.2vw, 32px);
-  --fs-h2: 21px;
+  /* type: Rubik only */
+  --font-main: "Rubik", "Segoe UI", "Arial Hebrew", Arial, sans-serif;
+  --font-heading: "Rubik", "Segoe UI", "Arial Hebrew", Arial, sans-serif;
+  --fs-h1: clamp(28px, 3.6vw, 40px);
+  --fs-h2: 22px;
   --fs-h3: 18px;
   --fs-body: 16px;
   --fs-label: 14px;
-  --line-height-base: 1.5;
+  --line-height-base: 1.6;
 
-  /* מרווחים ורדיוסים */
+  /* shape */
   --radius-sm: 10px;
   --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-lg: 18px;
   --radius-pill: 999px;
   --radius-segmented: 14px;
   --space-1: 4px;
@@ -67,16 +79,15 @@
   --space-6: 32px;
   --space-7: 48px;
 
-  /* צללים */
-  --shadow-card: 0 1px 2px rgba(42, 42, 61, 0.04);
-  --shadow-card-hover: 0 8px 20px rgba(42, 42, 61, 0.1);
-  --shadow-logo: 0 6px 16px rgba(0, 0, 0, 0.35);
-  --shadow-sidebar-widget: 0 8px 20px rgba(0, 0, 0, 0.18);
+  /* depth: long, soft, negative-spread, plum-tinted */
+  --shadow-card: 0 18px 36px -30px rgba(43, 26, 46, 0.45);
+  --shadow-card-hover: 0 24px 44px -26px rgba(43, 26, 46, 0.6);
+  --shadow-logo: 0 10px 22px -10px rgba(0, 0, 0, 0.45);
+  --shadow-sidebar-widget: 0 30px 60px -28px rgba(0, 0, 0, 0.6);
 
-  /* אנימציה */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 150ms;
-  --duration-base: 180ms;
+  --duration-base: 200ms;
 }
 
 /* גודל טקסט נגיש — מוגדל דרך סרגל הנגישות */

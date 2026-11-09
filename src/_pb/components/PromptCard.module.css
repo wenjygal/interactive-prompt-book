@@ -13,7 +13,7 @@
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-card-hover);
   border-color: var(--color-border);
 }
@@ -48,7 +48,7 @@
 
 .title {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 800;
   font-size: var(--fs-h3);
   line-height: 1.3;
   margin: 4px 0 0;
@@ -85,7 +85,7 @@
   align-items: center;
   gap: 6px;
   padding: 9px 18px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   background-color: var(--color-action);
   color: var(--color-on-action);
   font-weight: 700;

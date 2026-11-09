@@ -62,7 +62,7 @@
   display: block;
   font-size: 12px;
   font-weight: 700;
-  color: #64748b;
+  color: #5E4A5F;
   margin-bottom: var(--space-2);
 }
 
@@ -75,16 +75,16 @@
   flex: 1;
   padding: var(--space-2);
   border-radius: var(--radius-sm);
-  border: 1px solid #cbd5e1;
+  border: 1px solid #E3D5C6;
   background-color: #ffffff;
-  color: #1e293b;
+  color: #2B1A2E;
   cursor: pointer;
   font-weight: 700;
   transition: background-color var(--duration-base) var(--ease-out), transform var(--duration-fast) var(--ease-out);
 }
 
 .fontButton:hover {
-  background-color: #f1f5f9;
+  background-color: #F7EBDD;
 }
 
 .fontButton:active {
@@ -118,16 +118,16 @@
   padding: var(--space-2);
   margin-top: var(--space-2);
   border-radius: var(--radius-sm);
-  border: 1px solid #cbd5e1;
+  border: 1px solid #E3D5C6;
   background-color: #ffffff;
-  color: #1e293b;
+  color: #2B1A2E;
   cursor: pointer;
   font-weight: 700;
   transition: background-color var(--duration-base) var(--ease-out);
 }
 
 .resetButton:hover {
-  background-color: #f1f5f9;
+  background-color: #F7EBDD;
 }
 
 .statementLink {

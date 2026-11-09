@@ -1,10 +1,10 @@
 import { RocketIcon, MegaphoneIcon, MicIcon, SearchPlusIcon } from "../components/icons.jsx";
 
 export const CATEGORIES = [
-  { key: "marketing", label: "שיווק", color: "#F97316", tagText: "#C2410C", iconBg: "rgba(249,115,22,0.12)", Icon: RocketIcon },
-  { key: "sales", label: "מכירות", color: "#F59E0B", tagText: "#B45309", iconBg: "rgba(245,158,11,0.12)", Icon: MegaphoneIcon },
-  { key: "fundraising", label: "גיוס משקיעים", color: "#0EA5E9", tagText: "#0369A1", iconBg: "rgba(14,165,233,0.12)", Icon: MicIcon },
-  { key: "refine", label: "שיפור וחידוד", color: "#22C55E", tagText: "#15803D", iconBg: "rgba(34,197,94,0.12)", Icon: SearchPlusIcon },
+  { key: "marketing", label: "שיווק", color: "#E0128B", tagText: "#B30C6E", iconBg: "rgba(224,18,139,0.10)", Icon: RocketIcon },
+  { key: "sales", label: "מכירות", color: "#F68920", tagText: "#8A4300", iconBg: "rgba(246,137,32,0.14)", Icon: MegaphoneIcon },
+  { key: "fundraising", label: "גיוס משקיעים", color: "#2B1A2E", tagText: "#2B1A2E", iconBg: "rgba(43,26,46,0.08)", Icon: MicIcon },
+  { key: "refine", label: "שיפור וחידוד", color: "#5E4A5F", tagText: "#5E4A5F", iconBg: "rgba(94,74,95,0.10)", Icon: SearchPlusIcon },
 ];
 
 export function categoryLabel(key) {

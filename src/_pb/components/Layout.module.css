@@ -133,9 +133,10 @@
 
 .brandTitle {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 16px;
   line-height: 1.25;
+  letter-spacing: 0.02em;
   color: #ffffff;
   max-width: 130px;
 }
@@ -173,14 +174,14 @@
 }
 
 .navLinkActive {
-  background: #ffffff;
-  color: var(--color-action-hover);
+  background: var(--bm-paper);
+  color: var(--color-text-primary);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 
 .navLinkActive:hover {
-  background: #ffffff;
-  color: var(--color-action-hover);
+  background: var(--bm-paper);
+  color: var(--color-text-primary);
 }
 
 .badgeIcon {
@@ -209,9 +210,10 @@
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  background: #ffffff;
-  border-radius: var(--radius-lg);
+  background: var(--bm-paper-2);
+  border-radius: 14px;
   padding: 16px;
+  transform: rotate(0.8deg);
   color: var(--color-text-primary);
   box-shadow: var(--shadow-sidebar-widget);
 }
@@ -229,7 +231,7 @@
 
 .ringTrack {
   fill: none;
-  stroke: #eeeef6;
+  stroke: #E3D5C6;
   stroke-width: 4.5;
 }
 
@@ -275,4 +277,8 @@
   .main {
     padding: var(--space-4);
   }
+}
+
+@media (max-width: 880px) {
+  .profileWidget { transform: none; }
 }

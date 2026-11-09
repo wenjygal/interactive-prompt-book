@@ -127,7 +127,7 @@
 .switchTrack {
   position: absolute;
   inset: 0;
-  background-color: #d9d9e6;
+  background-color: #E3D5C6;
   border-radius: 999px;
   cursor: pointer;
   transition: background-color var(--duration-base) var(--ease-out);
