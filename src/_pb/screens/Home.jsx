@@ -12,7 +12,8 @@ import { SearchIcon } from "../components/icons.jsx";
 export default function Home() {
   const [activeTab, setActiveTab] = useState(CATEGORIES[0].key);
   const [query, setQuery] = useState("");
-  const [profileStatus] = useState(() => getProfileStatus(storage.getProfile()));
+  const [profile] = useState(() => storage.getProfile());
+  const profileStatus = getProfileStatus(profile);
   const [allPrompts] = useState(() => getAllPrompts());
 
   const trimmedQuery = query.trim().toLowerCase();
@@ -108,7 +109,7 @@ export default function Home() {
               </div>
               <div className={styles.grid}>
                 {prompts.map((prompt) => (
-                  <PromptCard key={prompt.id} prompt={prompt} />
+                  <PromptCard key={prompt.id} prompt={prompt} profile={profile} />
                 ))}
               </div>
             </div>
@@ -123,7 +124,7 @@ export default function Home() {
               )}
               <div className={styles.grid}>
                 {results.map((prompt) => (
-                  <PromptCard key={prompt.id} prompt={prompt} />
+                  <PromptCard key={prompt.id} prompt={prompt} profile={profile} />
                 ))}
               </div>
             </>

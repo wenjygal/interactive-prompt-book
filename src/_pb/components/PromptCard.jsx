@@ -1,53 +1,27 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./PromptCard.module.css";
-import { categoryMeta } from "../data/categories.js";
-import { extractPlaceholders } from "../data/promptsCatalog.js";
-import { PencilIcon, ChevronLeftIcon } from "./icons.jsx";
+import { buildPlaceholderState } from "../lib/placeholderState.js";
+import { ChevronLeftIcon } from "./icons.jsx";
 
-export default function PromptCard({ prompt }) {
-  const navigate = useNavigate();
-  const fieldsCount = extractPlaceholders(prompt.template).length;
-  const meta = categoryMeta(prompt.category);
-
-  function open() {
-    navigate(`/prompt/${prompt.id}`);
-  }
+// שורת פרומפט ברשימה. השורה כולה היא הקישור, בלי כפתור "פתח" נפרד.
+// הקטגוריה כבר מופיעה בכותרת הקבוצה, ולכן אין כאן אייקון או תגית.
+export default function PromptCard({ prompt, profile }) {
+  // שפה לא נספרת: היא ממולאת כברירת מחדל ("עברית") לכל מבקר, ואינה פרט על העסק
+  const state = buildPlaceholderState(prompt.template, profile);
+  const labels = Object.keys(state).filter((label) => state[label].fieldKey !== "language");
+  const total = labels.length;
+  const filled = labels.filter((label) => state[label].source).length;
 
   return (
-    <article
-      className={styles.card}
-      onClick={open}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          open();
-        }
-      }}
-    >
-      <div className={styles.topRow}>
-        <div className={styles.iconBox} style={{ background: meta.iconBg }}>
-          <meta.Icon size={21} color={meta.color} />
-        </div>
-        <span className={styles.categoryTag} style={{ color: meta.tagText, background: meta.iconBg }}>
-          {meta.label}
+    <Link to={`/prompt/${prompt.id}`} className={styles.row}>
+      <span className={styles.body}>
+        <span className={styles.title}>{prompt.title}</span>
+        <span className={styles.output}>{prompt.businessOutput}</span>
+        <span className={filled > 0 ? `${styles.fill} ${styles.fillHas}` : styles.fill}>
+          {filled > 0 ? `${filled} מתוך ${total} כבר מולאו מהעסק שלך` : `${total} פרטים למילוי`}
         </span>
-      </div>
-
-      <h3 className={styles.title}>{prompt.title}</h3>
-      <p className={styles.output}>{prompt.businessOutput}</p>
-
-      <div className={styles.footer}>
-        <span className={styles.fieldsCount}>
-          <PencilIcon size={14} />
-          {fieldsCount} שדות למילוי
-        </span>
-        <button type="button" className={styles.openButton} onClick={open}>
-          פתח
-          <ChevronLeftIcon size={15} />
-        </button>
-      </div>
-    </article>
+      </span>
+      <ChevronLeftIcon size={18} className={styles.chevron} aria-hidden="true" />
+    </Link>
   );
 }
