@@ -48,26 +48,25 @@
   font-size: var(--fs-body);
 }
 
+/* text link, not a button: the sidebar profile widget is the main way to the profile */
 .cta {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--space-2) var(--space-5);
-  border-radius: var(--radius-pill);
-  background-color: var(--color-action);
-  color: var(--color-on-action);
+  color: var(--color-text-primary);
   font-weight: 700;
   font-size: var(--fs-label);
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background-color var(--duration-base) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  text-decoration: underline;
+  text-decoration-color: var(--color-action);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
   white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .cta:hover {
-  background-color: var(--color-action-hover);
+  color: var(--color-action);
 }
 
-.cta:active {
-  transform: scale(0.97);
+.cta:focus-visible {
+  outline: 3px solid var(--color-action);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
