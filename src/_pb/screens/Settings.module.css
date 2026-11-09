@@ -50,7 +50,7 @@
   width: 100%;
   max-width: 360px;
   border: 1.5px solid var(--color-card-border);
-  border-radius: 11px;
+  border-radius: var(--radius-md);
   padding: 10px 13px;
   font-family: inherit;
   font-size: 14.5px;
@@ -128,7 +128,7 @@
   position: absolute;
   inset: 0;
   background-color: #E3D5C6;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   cursor: pointer;
   transition: background-color var(--duration-base) var(--ease-out);
 }
@@ -160,7 +160,7 @@
   color: var(--color-text-primary);
   font-weight: 700;
   padding: 10px 18px;
-  border-radius: 11px;
+  border-radius: var(--radius-md);
   font-size: 13.5px;
   cursor: pointer;
   transition: border-color var(--duration-base) var(--ease-out), color var(--duration-base) var(--ease-out);

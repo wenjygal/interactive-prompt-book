@@ -48,7 +48,7 @@
   width: 38px;
   height: 38px;
   flex-shrink: 0;
-  border-radius: 11px;
+  border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.08);
   border: 1.5px solid rgba(255, 255, 255, 0.14);
   color: #ffffff;
@@ -105,7 +105,7 @@
 .logo {
   width: 54px;
   height: 54px;
-  border-radius: 15px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1.5px solid rgba(255, 255, 255, 0.5);
   box-shadow: var(--shadow-logo);
@@ -120,7 +120,7 @@
   .logo {
     width: 38px;
     height: 38px;
-    border-radius: 11px;
+    border-radius: var(--radius-md);
   }
 }
 
@@ -160,7 +160,7 @@
   align-items: center;
   gap: 12px;
   padding: 9px 12px;
-  border-radius: 13px;
+  border-radius: var(--radius-md);
   color: var(--color-sidebar-text-idle);
   font-weight: 600;
   font-size: 15px;
@@ -187,7 +187,7 @@
 .badgeIcon {
   width: 36px;
   height: 36px;
-  border-radius: 11px;
+  border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.14);
   border: 1.5px solid rgba(255, 255, 255, 0.22);
   display: flex;
@@ -199,9 +199,9 @@
 }
 
 .navLinkActive .badgeIcon {
-  background: var(--color-action);
-  border-color: var(--color-action);
-  color: var(--color-on-action);
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  color: var(--bm-paper);
 }
 
 .profileWidget {
@@ -211,7 +211,7 @@
   gap: 12px;
   text-decoration: none;
   background: var(--bm-paper-2);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 16px;
   transform: rotate(0.8deg);
   color: var(--color-text-primary);

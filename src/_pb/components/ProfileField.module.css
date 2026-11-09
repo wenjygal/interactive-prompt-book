@@ -25,7 +25,7 @@
   resize: vertical;
   min-height: 44px;
   padding: var(--space-3);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background-color: var(--color-surface-sunken);
   color: var(--color-text-primary);

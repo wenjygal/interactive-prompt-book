@@ -19,7 +19,7 @@
 }
 
 .toggle:hover {
-  color: var(--color-action);
+  color: var(--color-text-primary);
   text-decoration: underline;
 }
 
@@ -74,7 +74,7 @@
 .fontButton {
   flex: 1;
   padding: var(--space-2);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   border: 1px solid #E3D5C6;
   background-color: #ffffff;
   color: #2B1A2E;
@@ -92,8 +92,8 @@
 }
 
 .fontButtonActive {
-  background-color: var(--color-action);
-  border-color: var(--color-action);
+  background-color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
   color: var(--color-on-action);
 }
 
@@ -110,14 +110,14 @@
 .checkbox {
   width: 18px;
   height: 18px;
-  accent-color: var(--color-action);
+  accent-color: var(--color-text-primary);
 }
 
 .resetButton {
   width: 100%;
   padding: var(--space-2);
   margin-top: var(--space-2);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   border: 1px solid #E3D5C6;
   background-color: #ffffff;
   color: #2B1A2E;

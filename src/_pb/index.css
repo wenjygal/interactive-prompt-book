@@ -45,7 +45,7 @@ a {
 :focus-visible {
   outline: 3px solid var(--color-action);
   outline-offset: 3px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
 }
 
 .visually-hidden {
@@ -71,7 +71,7 @@ a {
   background-color: var(--color-card-bg);
   color: var(--color-text-primary);
   border: 2px solid var(--color-action);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-weight: 700;
   text-decoration: none;
   transition: top var(--duration-base) var(--ease-out);

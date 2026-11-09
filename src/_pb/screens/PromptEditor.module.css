@@ -250,7 +250,7 @@
 .legendDot {
   width: 8px;
   height: 8px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
 }
 
 .legendDot[data-tone="confirmed"] {
@@ -278,7 +278,7 @@
 }
 
 .ph {
-  border-radius: 6px;
+  border-radius: var(--radius-xs);
   padding: 1px 7px;
   font-weight: 700;
 }
@@ -348,7 +348,7 @@
   resize: vertical;
   min-height: 40px;
   padding: 9px 12px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background-color: var(--color-surface-sunken);
   color: var(--color-text-primary);

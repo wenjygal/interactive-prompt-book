@@ -50,7 +50,7 @@
 .catTile {
   background: var(--color-card-bg);
   border: 1.5px solid var(--color-card-border);
-  border-radius: 13px;
+  border-radius: var(--radius-md);
   padding: 14px;
   text-align: right;
   cursor: pointer;
@@ -70,7 +70,7 @@
 .catIcon {
   width: 34px;
   height: 34px;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;

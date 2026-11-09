@@ -66,11 +66,14 @@
   --line-height-base: 1.6;
 
   /* shape */
-  --radius-sm: 10px;
+  /* corner rule: lg = panels and cards, md = everything interactive or small
+     (buttons, fields, nav items, icon boxes), pill = badges, tags, switches,
+     xs = inline marks only (highlights, legend dots, focus on text links).
+     Circles use 50%. No raw px values anywhere else. */
+  --radius-xs: 4px;
   --radius-md: 12px;
   --radius-lg: 18px;
   --radius-pill: 999px;
-  --radius-segmented: 14px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;

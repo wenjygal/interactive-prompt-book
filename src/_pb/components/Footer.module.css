@@ -33,6 +33,6 @@
 }
 
 .link:hover {
-  color: var(--color-action);
+  color: var(--color-text-primary);
   text-decoration: underline;
 }
