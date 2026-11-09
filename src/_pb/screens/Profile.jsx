@@ -220,7 +220,7 @@ export default function Profile() {
 
       <div className={styles.footerActions}>
         <button type="button" className={styles.primaryButton} onClick={handleSaveAndGo}>
-          שמור וגש לפרומפטים
+          שמירה ומעבר לפרומפטים
         </button>
         <button type="button" className={styles.secondaryButton} onClick={handleSave}>
           שמור פרופיל
