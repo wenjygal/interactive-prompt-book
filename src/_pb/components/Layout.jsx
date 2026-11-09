@@ -20,14 +20,18 @@ function navClass({ isActive }) {
 }
 
 function useProfileCompletion() {
-  const [percent] = useState(() => {
-    return getProfileCompletion(storage.getProfile()).percent;
-  });
-  return percent;
+  const [completion] = useState(() => getProfileCompletion(storage.getProfile()));
+  return completion;
+}
+
+function completionText({ filled, total }) {
+  if (filled === 0) return "עוד לא מולא";
+  if (filled === total) return "כל הפרטים מולאו";
+  return `${filled} מתוך ${total} פרטים`;
 }
 
 export default function Layout() {
-  const percent = useProfileCompletion();
+  const completion = useProfileCompletion();
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const sidebarRef = useRef(null);
@@ -80,12 +84,10 @@ export default function Layout() {
             {NAV_ITEMS.map((item) => (
               <NavLink key={item.to} to={item.to} end={item.end} className={navClass}>
                 <item.Icon size={20} className={styles.navIcon} />
-                <span className={styles.navLabel}>{item.label}</span>
-                {item.showProgress && (
-                  <span className={styles.navProgress} aria-label={`פרופיל העסק מולא ב-${percent} אחוז`}>
-                    {percent}%
-                  </span>
-                )}
+                <span className={styles.navLabel}>
+                  {item.label}
+                  {item.showProgress && <span className={styles.navProgress}>{completionText(completion)}</span>}
+                </span>
               </NavLink>
             ))}
           </nav>
