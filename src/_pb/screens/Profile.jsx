@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import styles from "./Profile.module.css";
 import { PROFILE_FIELDS, emptyProfile } from "../data/profileFields.js";
 import { storage } from "../lib/storage.js";
+import { getProfileCompletion } from "../lib/profileStatus.js";
 import { analyzeProfileCsv, analyzeProfileText, analyzeProfileTextAI } from "../lib/profileParser.js";
 import ProfileField from "../components/ProfileField.jsx";
 import Spinner from "../components/Spinner.jsx";
@@ -12,9 +13,7 @@ import Toast from "../components/Toast.jsx";
 export default function Profile() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState(() => storage.getProfile() ?? emptyProfile());
-  const totalFields = PROFILE_FIELDS.length;
-  const filledCount = PROFILE_FIELDS.filter((f) => profile.fields[f.key]?.value?.trim()).length;
-  const percent = Math.round((filledCount / totalFields) * 100);
+  const { filled: filledCount, total: totalFields, percent } = getProfileCompletion(profile);
   const [intakeText, setIntakeText] = useState("");
   const [fileName, setFileName] = useState("");
   const [isDragActive, setIsDragActive] = useState(false);

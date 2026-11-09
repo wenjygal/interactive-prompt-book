@@ -4,7 +4,7 @@ import styles from "./Layout.module.css";
 import Footer from "./Footer.jsx";
 import { BookIcon, UserIcon, ChartIcon, BookmarkIcon, SettingsIcon, MenuIcon, CloseIcon } from "./icons.jsx";
 import { storage } from "../lib/storage.js";
-import { PROFILE_FIELDS } from "../data/profileFields.js";
+import { getProfileCompletion } from "../lib/profileStatus.js";
 
 const NAV_ITEMS = [
   { to: "/", label: "ספר הפרומפטים", end: true, Icon: BookIcon },
@@ -16,10 +16,7 @@ const NAV_ITEMS = [
 
 function useProfileCompletion() {
   const [percent] = useState(() => {
-    const profile = storage.getProfile();
-    const total = PROFILE_FIELDS.length;
-    const filled = PROFILE_FIELDS.filter((f) => profile.fields[f.key]?.value?.trim()).length;
-    return Math.round((filled / total) * 100);
+    return getProfileCompletion(storage.getProfile()).percent;
   });
   return percent;
 }

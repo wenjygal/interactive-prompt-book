@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import styles from "./PromptCard.module.css";
 import { buildPlaceholderState } from "../lib/placeholderState.js";
+import { isCountedField } from "../lib/profileStatus.js";
 import { ChevronLeftIcon } from "./icons.jsx";
 
 // שורת פרומפט ברשימה. השורה כולה היא הקישור, בלי כפתור "פתח" נפרד.
 // הקטגוריה כבר מופיעה בכותרת הקבוצה, ולכן אין כאן אייקון או תגית.
 export default function PromptCard({ prompt, profile }) {
-  // שפה לא נספרת: היא ממולאת כברירת מחדל ("עברית") לכל מבקר, ואינה פרט על העסק
+  // אותו כלל ספירה כמו פרופיל העסק: שפה לא נספרת
   const state = buildPlaceholderState(prompt.template, profile);
-  const labels = Object.keys(state).filter((label) => state[label].fieldKey !== "language");
+  const labels = Object.keys(state).filter((label) => isCountedField(state[label].fieldKey));
   const total = labels.length;
   const filled = labels.filter((label) => state[label].source).length;
 
