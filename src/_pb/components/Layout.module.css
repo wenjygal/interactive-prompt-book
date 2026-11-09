@@ -1,6 +1,6 @@
 .page {
   display: grid;
-  grid-template-columns: 258px 1fr;
+  grid-template-columns: 224px 1fr;
   min-height: 100vh;
 }
 
@@ -17,6 +17,7 @@
   height: 100vh;
   overflow-y: auto;
   background: var(--color-sidebar-bg);
+  border-inline-end: 1px solid var(--color-sidebar-border);
   color: var(--color-sidebar-text);
   padding: 24px 14px;
   display: flex;
@@ -31,6 +32,8 @@
     overflow: visible;
     padding: 10px 16px;
     gap: 0;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--color-sidebar-border);
   }
 }
 
@@ -49,14 +52,14 @@
   height: 38px;
   flex-shrink: 0;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.14);
-  color: #ffffff;
+  background: transparent;
+  border: 1px solid var(--color-sidebar-border);
+  color: var(--color-sidebar-text);
   cursor: pointer;
 }
 
 .menuToggle:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--color-sidebar-hover);
 }
 
 @media (max-width: 880px) {
@@ -89,7 +92,8 @@
     gap: 18px;
     max-height: calc(100vh - 64px);
     overflow-y: auto;
-    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
+    border-bottom: 1px solid var(--color-sidebar-border);
+    box-shadow: var(--shadow-card-hover);
     border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   }
 }
@@ -168,11 +172,11 @@
 
 .navLink:hover {
   color: var(--color-sidebar-text);
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: var(--color-sidebar-hover);
 }
 
 .navLink:focus-visible {
-  outline: 3px solid var(--bm-paper);
+  outline: 3px solid var(--color-action);
   outline-offset: -3px;
 }
 
@@ -180,7 +184,7 @@
 .navLinkActive:hover {
   color: var(--color-sidebar-text);
   font-weight: 700;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-sidebar-active);
 }
 
 .navLinkActive::before {
@@ -191,7 +195,7 @@
   bottom: 10px;
   width: 3px;
   border-radius: var(--radius-pill);
-  background: var(--bm-paper);
+  background: var(--color-sidebar-text);
 }
 
 .navIcon {

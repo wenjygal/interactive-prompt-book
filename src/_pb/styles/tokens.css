@@ -48,10 +48,13 @@
   --color-danger: #b3261e;
   --color-danger-hover: #8c1d14;
 
-  /* sidebar = the plum desk. No gradient: the brand gradient is reserved for the site's close section */
-  --color-sidebar-bg: #2B1A2E;
-  --color-sidebar-text: #FFF8F0;
-  --color-sidebar-text-idle: #E3CFDD;
+  /* sidebar: light, one step darker than the page, hairline edge. Plum lives in the text, not in a dark column */
+  --color-sidebar-bg: #F7EBDD;
+  --color-sidebar-border: #E3D5C6;
+  --color-sidebar-text: #2B1A2E;
+  --color-sidebar-text-idle: #5E4A5F;
+  --color-sidebar-hover: rgba(43, 26, 46, 0.05);
+  --color-sidebar-active: rgba(43, 26, 46, 0.08);
 
   --color-segmented-bg: #F7EBDD;
 
@@ -85,8 +88,6 @@
   /* depth: long, soft, negative-spread, plum-tinted */
   --shadow-card: 0 18px 36px -30px rgba(43, 26, 46, 0.45);
   --shadow-card-hover: 0 24px 44px -26px rgba(43, 26, 46, 0.6);
-  --shadow-logo: 0 10px 22px -10px rgba(0, 0, 0, 0.45);
-  --shadow-sidebar-widget: 0 30px 60px -28px rgba(0, 0, 0, 0.6);
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 150ms;
@@ -116,9 +117,10 @@ html[data-a11y-contrast="high"] {
   --color-border: #000000;
   --color-border-subtle: #000000;
   --color-divider: #000000;
-  --color-sidebar-bg: #000000;
-  --color-sidebar-text: #ffffff;
-  --color-sidebar-text-idle: #ffffff;
+  --color-sidebar-bg: #ffffff;
+  --color-sidebar-border: #000000;
+  --color-sidebar-text: #000000;
+  --color-sidebar-text-idle: #000000;
   --color-segmented-bg: #ffffff;
 }
 
