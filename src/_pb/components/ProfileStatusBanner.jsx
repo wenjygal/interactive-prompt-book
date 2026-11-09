@@ -24,7 +24,7 @@ export default function ProfileStatusBanner({ status }) {
         <span className={styles.message}>{MESSAGES[status]}</span>
       </div>
       <Link to="/profile" className={styles.cta}>
-        גש לפרופיל העסק
+        מעבר לפרופיל העסק
       </Link>
     </div>
   );
