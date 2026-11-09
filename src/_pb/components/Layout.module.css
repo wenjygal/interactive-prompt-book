@@ -130,7 +130,7 @@
 .brandTitle {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.25;
   color: var(--color-sidebar-text);
   white-space: nowrap;
@@ -156,12 +156,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: 44px;
+  min-height: 46px;
   padding: 0 12px;
   border-radius: var(--radius-md);
   color: var(--color-sidebar-text-idle);
   font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
   text-decoration: none;
   transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
 }
@@ -209,7 +209,7 @@
 }
 
 .navProgress {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--color-sidebar-text-idle);
   background: rgba(255, 255, 255, 0.08);

@@ -7,7 +7,7 @@ import { storage } from "../lib/storage.js";
 import { getProfileCompletion } from "../lib/profileStatus.js";
 
 const NAV_ITEMS = [
-  { to: "/", label: "ספר הפרומפטים", end: true, Icon: BookIcon },
+  { to: "/", label: "כל הפרומפטים", end: true, Icon: BookIcon },
   { to: "/profile", label: "העסק שלי", Icon: UserIcon, showProgress: true },
   { to: "/analyze", label: "יבוא", Icon: ChartIcon },
   { to: "/library", label: "שמורים שלי", Icon: BookmarkIcon },
@@ -79,7 +79,7 @@ export default function Layout() {
           <nav className={styles.nav} aria-label="ניווט ראשי">
             {NAV_ITEMS.map((item) => (
               <NavLink key={item.to} to={item.to} end={item.end} className={navClass}>
-                <item.Icon size={19} className={styles.navIcon} />
+                <item.Icon size={20} className={styles.navIcon} />
                 <span className={styles.navLabel}>{item.label}</span>
                 {item.showProgress && (
                   <span className={styles.navProgress} aria-label={`פרופיל העסק מולא ב-${percent} אחוז`}>
@@ -91,7 +91,7 @@ export default function Layout() {
           </nav>
 
           <NavLink to={SETTINGS_ITEM.to} className={(state) => `${navClass(state)} ${styles.navBottom}`}>
-            <SETTINGS_ITEM.Icon size={19} className={styles.navIcon} />
+            <SETTINGS_ITEM.Icon size={20} className={styles.navIcon} />
             <span className={styles.navLabel}>{SETTINGS_ITEM.label}</span>
           </NavLink>
         </div>
